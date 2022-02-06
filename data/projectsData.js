@@ -8,19 +8,19 @@ const projectsData = [
   {
     title: 'GOTCHA',
     description: `GOTCHA, got you in charity! This is a mobile application prototype that helped reduce uneven fundraising of small nonprofit organizations`,
-    imgSrc: '/static/images/projects/GOTCHA.png',
+    imgSrc: '/static/images/projects/gotcha.png',
     href: 'https://www.youtube.com/watch?v=YXzMDNRGixM',
   },
   {
     title: 'Dormy, be your homie',
     description: `A website helped students live in dorms solve their daily needs`,
-    imgSrc: '/static/images/projects/Dormy.png',
+    imgSrc: '/static/images/projects/dormy.png',
     href: 'https://youtu.be/gYOxBSz9LmE',
   },
   {
     title: 'Swappy',
     description: `A mobile application aimed to encourage people to exchange their unused items by “Decluttering challenge” and “barter-based group” functions`,
-    imgSrc: '/static/images/projects/Swappy.png',
+    imgSrc: '/static/images/projects/swappy.png',
     href: 'https://www.youtube.com/watch?v=HI4xZkTqql0',
   },
   // {
