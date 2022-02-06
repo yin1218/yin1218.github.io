@@ -8,8 +8,10 @@ linkedin: https://www.linkedin.com/in/wpbag/
 github: https://github.com/yin1218
 ---
 
-## About Me
-音樂、哲學與程式愛好者
-## Experience 
+## Motto
+
+> Be the change you want to see in the world
 
 ## Interest
+
+Programming | Photography | Design | Philosophy | Music
