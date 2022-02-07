@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: wpbag.vercel.app
+Token: 7132964f80a419536004691b4bf9c596092069e14c6e5770fb935c13bd37a5bc
