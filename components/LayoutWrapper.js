@@ -2,13 +2,25 @@ import siteMetadata from '@/data/siteMetadata'
 import headerNavLinks from '@/data/headerNavLinks'
 import Logo from '@/data/logo.svg'
 import Link from './Link'
-import NavLink from './NavLink'
 import SectionContainer from './SectionContainer'
 import Footer from './Footer'
 import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
+import styled from 'styled-components'
 
 const LayoutWrapper = ({ children }) => {
+  const NavLink = styled(Link)`
+    color: gray;
+    z-index: 2;
+    &:hover {
+      color: black;
+      cursor: crosshair;
+      background: #eeeeee;
+      transition-duration: 0.1s;
+      transition-timing-function: ease-out;
+    }
+  `
+
   return (
     <SectionContainer>
       <div className="flex h-screen flex-col justify-between">

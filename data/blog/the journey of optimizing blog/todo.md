@@ -4,12 +4,8 @@ date: '2021-02-07'
 tags: ['coding']
 draft: false
 summary:
-images: []
+images: ['../../static/images/project/dormy.png']
 ---
-
-# What I done
-
-- [x] scscsc
 
 # What I want to do
 
