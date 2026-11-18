@@ -52,8 +52,8 @@ export const pageSEO = {
   photography: {
     path: '/blog/photography-and-me',
     title: 'Photography and me',
-    description: 'A reflection on my relationship with photography. Coming soon.',
-    index: false,
+    description:
+      'A first-person essay by Chien-Yin Wu on what photography means: from recording the real to a beautiful accident.',
   },
 } as const
 

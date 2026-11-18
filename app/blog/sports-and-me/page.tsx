@@ -1,60 +1,13 @@
 import Link from '@/components/Link'
+import SportsList from '@/components/SportsList'
+import siteMetadata from '@/data/siteMetadata'
+import { nextSports, triedSports } from '@/data/sportsData'
 import { genPageMetadata, pageSEO } from 'app/seo'
 
 export const metadata = genPageMetadata(pageSEO.sports)
 
-const tried = [
-  'Running',
-  'Locking',
-  'Modern dance (contact improvisation)',
-  'Kayaking',
-  'Stand-up paddleboarding',
-  'Swimming',
-  'Snorkelling',
-  'Bouldering',
-  'Ice climbing',
-  'Aerial yoga',
-  'Mat yoga',
-  'Pilates',
-  'Fire spinning',
-  'Pole dance',
-  'Skating',
-  'Weight training',
-  'Gyrotonic',
-  'Taekwondo',
-  'Volleyball',
-  'Badminton',
-  'Squash',
-  'Billiards',
-  'Table tennis',
-  'Golf',
-  'Tree climbing',
-  'Archery',
-  'Soft tennis',
-  'Cycling',
-  'Ostrich riding (?)',
-  'Frisbee',
-  'Bowling',
-  'Darts',
-]
-
-const next = [
-  'Scuba diving',
-  'Aerial hoop',
-  'Curling',
-  'Skateboarding',
-  'Sanda',
-  'Dragon boating',
-  'Dragon and lion dance',
-  'Fencing',
-  'Air rifle shooting',
-  'Skiing',
-  'Sailing',
-  'Horse riding',
-  'Surfing',
-]
-
 export default function SportsAndMe() {
+  const hasPhotos = triedSports.some((sport) => sport.photos?.length)
   return (
     <article className="academic-document academic-prose">
       <p className="eyebrow">Beyond research</p>
@@ -75,19 +28,17 @@ export default function SportsAndMe() {
         stairs.
       </p>
 
-      <h2 id="tried">Tried so far ({tried.length})</h2>
-      <ul className="sports-list">
-        {tried.map((sport) => (
-          <li key={sport}>{sport}</li>
-        ))}
-      </ul>
+      <h2 id="tried">Tried so far ({triedSports.length})</h2>
+      {hasPhotos && <p className="sports-hint">Sports with a photo label open my photos.</p>}
+      <SportsList sports={triedSports} />
 
-      <h2 id="next">Next on the list ({next.length})</h2>
-      <ul className="sports-list">
-        {next.map((sport) => (
-          <li key={sport}>{sport}</li>
-        ))}
-      </ul>
+      <h2 id="next">Next on the list ({nextSports.length})</h2>
+      <SportsList sports={nextSports} />
+      <p className="sports-invite">
+        If one of these is on your list too, or you already do it and are happy to take a beginner
+        along, <Link href={`mailto:${siteMetadata.email}`}>write to me</Link>. I would love to try
+        it together.
+      </p>
 
       <Link className="project-link" href="/about">
         Back to About

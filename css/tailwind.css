@@ -2293,3 +2293,91 @@ body {
 .dark .academic-prose .sports-list li {
   border-color: var(--color-gray-700);
 }
+
+.academic-prose .sports-list li.has-photos {
+  padding: 0;
+  border-color: #93442f;
+}
+.sports-list button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  color: #93442f;
+  cursor: pointer;
+}
+.sports-list button:hover {
+  background: rgb(147 68 47 / 0.08);
+}
+.sports-photo-count {
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+.academic-prose p.sports-hint {
+  margin-bottom: 0.75rem;
+  font-size: 0.8rem;
+  color: var(--color-gray-500);
+}
+.academic-prose p.sports-invite {
+  margin-top: 1.25rem;
+}
+.sports-dialog {
+  margin: auto;
+  width: min(92vw, 720px);
+  max-height: 88vh;
+  padding: 0;
+  border: 0;
+  border-radius: 0.75rem;
+  background: var(--color-white);
+  color: inherit;
+  overflow-y: auto;
+}
+.dark .sports-dialog {
+  background: var(--color-gray-900);
+}
+.sports-dialog::backdrop {
+  background: rgb(0 0 0 / 0.6);
+}
+.sports-dialog-body {
+  padding: 1.25rem;
+}
+.sports-dialog-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.academic-prose .sports-dialog-head h2 {
+  margin: 0;
+}
+.sports-dialog-head button {
+  font-size: 0.8rem;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+.sports-dialog figure + figure {
+  margin-top: 1rem;
+}
+.sports-dialog img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+.sports-dialog figcaption {
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--color-gray-500);
+}
+
+.academic-prose .essay-quote {
+  margin: 0 0 1rem;
+  padding-left: 1rem;
+  border-left: 2px solid #bba291;
+  font-size: 0.95rem;
+  line-height: 1.85;
+  font-style: italic;
+}
