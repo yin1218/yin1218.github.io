@@ -37,6 +37,12 @@ export const pageSEO = {
     description:
       'Academic CV of Chien-Yin Wu (巫芊瑩): NTU education, publications, research, frontend development, teaching, awards, and technical skills.',
   },
+  blog: {
+    path: '/blog',
+    title: 'Essays',
+    description:
+      'Essays by Chien-Yin Wu (巫芊瑩) beyond research: on cafés, photography, and collecting sports.',
+  },
   cafes: {
     path: '/blog/cafes-and-me',
     title: 'Cafés and me',

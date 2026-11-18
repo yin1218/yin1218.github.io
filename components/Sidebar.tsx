@@ -13,7 +13,7 @@ export default function Sidebar() {
           </Link>
           <ThemeSwitch />
         </div>
-        <p>Research & everyday observations</p>
+        <p>Human–computer interaction research</p>
       </div>
       <SidebarNavigation />
     </aside>

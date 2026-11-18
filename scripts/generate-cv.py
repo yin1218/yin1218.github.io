@@ -6,6 +6,7 @@ Run from any directory: python3 scripts/generate-cv.py
 
 import json
 import os
+import re
 import subprocess
 from datetime import datetime
 from pathlib import Path
@@ -83,6 +84,12 @@ def text(value):
     return escape(value)
 
 
+def mixed(value):
+    """Escape text and set runs of Chinese characters in the Chinese font."""
+    return re.sub(r'[\u3000-\u303f\u4e00-\u9fff\uff00-\uffef]+',
+                  lambda match: f'<font name="{chinese}">{match.group(0)}</font>', text(value))
+
+
 def paragraph(value, style='CVBody'):
     return Paragraph(value, styles[style])
 
@@ -139,11 +146,22 @@ story.append(paragraph(' | '.join([
 ])))
 
 section('Education', academic['education'])
-story.append(paragraph('Publication', 'CVSection'))
-paper = academic['publication']
-story.append(paragraph(text(paper['authors']) + '. 2025. ' + text(paper['title']) + '.'))
-story.append(paragraph(text(paper['venue']) + '. ' + link(paper['href'], 'DOI: 10.1145/3706599.3719929')))
-story.append(paragraph(text(paper['description'])))
+story.append(paragraph('Publications', 'CVSection'))
+for paper in academic['publications']:
+    authors = ', '.join(
+        f'<b>{mixed(name)}</b>' if name == academic['selfName'] else mixed(name)
+        for name in paper['authors']
+    )
+    lines = [paragraph(f"{authors}. {text(paper['year'])}. {mixed(paper['title'])}.")]
+    venue = mixed(paper['venue'])
+    for item in paper.get('links', []):
+        if 'doi.org' in item['href']:
+            venue += '. ' + link(item['href'], 'DOI: ' + item['href'].split('doi.org/')[1])
+    lines.append(paragraph(venue))
+    if paper.get('role'):
+        lines.append(paragraph('Role: ' + text(paper['role'])))
+    lines.append(Spacer(1, 4))
+    story.append(KeepTogether(lines))
 section('Research experience', academic['researchExperience'])
 
 story.append(PageBreak())

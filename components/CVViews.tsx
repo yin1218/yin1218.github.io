@@ -57,11 +57,6 @@ export default function CVViews({ header, children }: { header: ReactNode; child
             {item.label}
           </button>
         ))}
-        <p className="cv-views-hint">
-          {view === 'timeline'
-            ? 'Time runs down the page, month by month; each block is as tall as the time it lasted. Tap a block for details.'
-            : 'The same record, written out by section.'}
-        </p>
       </div>
       <div hidden={view !== 'list'}>{children}</div>
       {view === 'timeline' && <CVTimeline />}

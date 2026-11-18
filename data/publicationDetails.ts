@@ -1,5 +1,6 @@
 // One detail page per publication (/publications/<id>). `id` matches data/academicData.ts.
-// Keep unpublished work (under review) to what is already public: no findings or data.
+// For work under review, describe the study design and what the paper distinguishes;
+// leave detailed findings and data out until the review is complete.
 export interface PublicationDetail {
   id: string
   shortTitle: string
@@ -22,6 +23,23 @@ export const publicationDetails: PublicationDetail[] = [
       'How people articulate themselves, and anticipate presenting themselves to others, when they read AI-generated interpretations of who they are.',
     description:
       'Seeing Yourself Before Being Seen by Chien-Yin Wu and Nanyi Bi: a master’s thesis study of AI-generated self-interpretations, under review at CHI 2027.',
+    steps: [
+      {
+        label: '01 · Build',
+        title: 'Generative AI system',
+        text: 'Turns personal material into tags, narratives, and images of the self.',
+      },
+      {
+        label: '02 · Study',
+        title: '20 participants',
+        text: 'Think-aloud lab sessions with emerging adults.',
+      },
+      {
+        label: '03 · Analyze',
+        title: 'Thematic analysis',
+        text: 'Of what participants said as they read the AI’s interpretations.',
+      },
+    ],
     sections: [
       {
         id: 'overview',
@@ -33,15 +51,30 @@ export const publicationDetails: PublicationDetail[] = [
         ],
       },
       {
+        id: 'approach',
+        nav: 'Research approach',
+        title: 'Research approach',
+        paragraphs: [
+          'I developed a generative AI system that turns personal material into tags, narratives, and images of the self, and ran a qualitative lab study in which twenty emerging adults thought aloud while reading what the system said about them.',
+          'The analysis describes four overlapping ways participants articulated themselves in response: differentiating, connecting, contextualizing, and comparing. It also separates three things that are easy to treat as one: articulating oneself, accepting an AI output, and anticipating presenting it to others.',
+        ],
+      },
+      {
         id: 'status',
         nav: 'Status',
         title: 'Status',
         paragraphs: [
-          'The manuscript is under review at CHI 2027. Study details and findings will be added here once the review is complete.',
+          'The manuscript is under review at CHI 2027. Detailed findings will be added here once the review is complete.',
         ],
       },
     ],
-    roles: ['Study design', 'Interviews', 'Qualitative analysis', 'Writing'],
+    roles: [
+      'System development',
+      'Study design',
+      'Think-aloud sessions',
+      'Thematic analysis',
+      'Writing',
+    ],
     roleNote: 'Carried out with my advisor, Nanyi Bi, at National Taiwan University.',
     citation:
       'Chien-Yin Wu and Nanyi Bi. Seeing Yourself Before Being Seen: Participant Articulation and Anticipated Self-Presentation with AI-Generated Self-Interpretations. Manuscript under review at CHI 2027.',
@@ -86,6 +119,7 @@ export const publicationDetails: PublicationDetail[] = [
         title: 'Research approach',
         paragraphs: [
           'I conducted seven hour-long interviews about people’s experiences of cross-cultural mingling. I also designed and developed an LLM-supported prototype for self-presentation ideation. The prototype explores using AI to help people develop ideas for what they might share about themselves in these interactions.',
+          'The interviews suggested that hesitation was common: participants wanted to connect across cultures and had missed connections because they were afraid of saying the wrong thing.',
         ],
       },
     ],

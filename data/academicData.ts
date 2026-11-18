@@ -81,6 +81,7 @@ export interface PublicationItem {
   authors: string[]
   title: string
   originalTitle?: string
+  role?: string
   venue: string
   links?: { label: string; href: string }[]
 }
@@ -118,29 +119,30 @@ export const publications: PublicationItem[] = [
     title: 'Oblivilight: Exploring Forgetting Mechanisms in Generative AI for Emotional Support',
     originalTitle: 'Oblivilight 憶光：探索情感支持生成式人工智慧的遺忘機制',
     venue: 'TAICHI 2025 · Demo (OpenHCI 2025)',
+    role: 'Technical teaching assistant to the six-person student team',
     links: [{ label: 'Program', href: 'https://taichi2025.taiwanchi.org/#/agenda' }],
   },
 ]
 
 export const researchExperience: Experience[] = [
   {
-    title: 'Incoming Full-time Research Assistant',
+    title: 'Full-time Research Assistant',
     organization: 'NSTC-funded research project · Supervisor: Nian-Shing Chen',
-    date: 'Starting November 2026',
+    date: 'November 2026 – present',
     description:
-      'Will implement a research system for a project funded by Taiwan’s National Science and Technology Council (NSTC).',
+      'Implementing a research system for a project funded by Taiwan’s National Science and Technology Council (NSTC).',
   },
   {
     title: 'Part-time Research Assistant',
     organization: 'National Taiwan University · Supervisor: Nanyi Bi',
     date: 'September 2026 – January 2027 (expected)',
     description:
-      'Assisting with a qualitative study of people’s experiences while waiting for AI responses.',
+      'Conducting interviews and analysis for a qualitative study of how people wait for AI agents to finish delegated tasks.',
   },
   {
     title: 'Research Assistant',
     organization: 'National Taiwan University · Advisor: Nanyi Bi',
-    date: 'Started summer 2024',
+    date: 'Summer 2024 – August 2026',
     description:
       'Conducted seven hour-long interviews on cross-cultural mingling. Designed and developed an LLM-supported self-presentation ideation prototype; the work was accepted at CHI EA 2025.',
   },
@@ -164,7 +166,7 @@ export const workExperience: Experience[] = [
   {
     title: 'InnoServe Intern',
     organization: 'Jubo Health',
-    date: 'Spring 2026 – October 2026 (expected)',
+    date: 'Spring 2026 – October 2026',
     description:
       'Digitized order workflows through API automation and consolidation of sales logic.',
   },

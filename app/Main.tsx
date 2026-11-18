@@ -1,5 +1,6 @@
 import Link from '@/components/Link'
-import Image from '@/components/Image'
+import HomeIntro from '@/components/HomeIntro'
+import ViewfinderPortrait from '@/components/ViewfinderPortrait'
 import NamePronunciation from '@/components/NamePronunciation'
 import CVDownload from '@/components/CVDownload'
 import NowBlock from '@/components/NowBlock'
@@ -14,18 +15,7 @@ export default function Home() {
           <NamePronunciation
             audioSrc={`${process.env.BASE_PATH || ''}/static/audio/chien-yin-wu.mp3`}
           />
-          <p id="research">
-            I study human–computer interaction, human-centered AI, and cross-cultural communication.
-            I use interviews and prototypes to explore how AI can support people’s interactions.
-          </p>
-          <p id="education">
-            I received my master’s degree in Information Management from National Taiwan University
-            in August 2026, advised by Nanyi Bi.
-          </p>
-          <p id="observations">
-            Outside research, I enjoy visiting cafés, observing society, taking photographs, and
-            trying new sports.
-          </p>
+          <HomeIntro />
           <div id="contact" className="profile-links">
             <Link href={`mailto:${siteMetadata.email}`}>Email</Link>
             <Link href="/resume">CV</Link>
@@ -35,17 +25,7 @@ export default function Home() {
             {siteMetadata.linkedin && <Link href={siteMetadata.linkedin}>LinkedIn</Link>}
           </div>
         </div>
-        <div className="home-portrait-frame">
-          <Image
-            src="/static/images/chien-yin-wu.webp"
-            alt="Portrait of Chien-Yin Wu"
-            width={180}
-            height={180}
-            sizes="(max-width: 767px) 112px, 160px"
-            className="home-portrait"
-            priority
-          />
-        </div>
+        <ViewfinderPortrait />
       </section>
       <NowBlock />
     </div>

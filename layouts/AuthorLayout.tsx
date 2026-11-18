@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import type { Authors } from 'contentlayer/generated'
-import Image from '@/components/Image'
+import ViewfinderPortrait from '@/components/ViewfinderPortrait'
 import NamePronunciation from '@/components/NamePronunciation'
 import Link from '@/components/Link'
 import CVDownload from '@/components/CVDownload'
@@ -12,7 +12,7 @@ interface Props {
 }
 
 export default function AuthorLayout({ children, content }: Props) {
-  const { name, avatar, email, linkedin, github } = content
+  const { name, email, linkedin, github } = content
 
   return (
     <div className="academic-document about-document">
@@ -34,18 +34,7 @@ export default function AuthorLayout({ children, content }: Props) {
             {linkedin && <Link href={linkedin}>LinkedIn</Link>}
           </div>
         </div>
-        {avatar && (
-          <div className="home-portrait-frame">
-            <Image
-              src={avatar}
-              alt={`Portrait of ${name}`}
-              width={180}
-              height={180}
-              sizes="(max-width: 767px) 112px, 160px"
-              className="home-portrait"
-            />
-          </div>
-        )}
+        <ViewfinderPortrait />
       </div>
       <div className="academic-prose">{children}</div>
     </div>

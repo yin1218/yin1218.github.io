@@ -34,6 +34,7 @@ export default function PublicationList() {
             ))}
           </p>
           <p className="publication-venue">{item.venue}</p>
+          {item.role && <p className="publication-venue">My role: {item.role}</p>}
           <div className="publication-links">
             <Link className="project-link" href={`/publications/${item.id}`}>
               Read more →

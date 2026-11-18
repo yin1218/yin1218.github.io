@@ -7,7 +7,6 @@ import { genPageMetadata, pageSEO } from 'app/seo'
 export const metadata = genPageMetadata(pageSEO.sports)
 
 export default function SportsAndMe() {
-  const hasPhotos = triedSports.some((sport) => sport.photos?.length)
   return (
     <article className="academic-document academic-prose">
       <p className="eyebrow">Beyond research</p>
@@ -38,7 +37,6 @@ export default function SportsAndMe() {
       </p>
 
       <h2 id="tried">Tried so far ({triedSports.length})</h2>
-      {hasPhotos && <p className="sports-hint">Sports with a photo label open my photos.</p>}
       <SportsList sports={triedSports} />
 
       <h2 id="next">Next on the list ({nextSports.length})</h2>
