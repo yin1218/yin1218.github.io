@@ -10,9 +10,9 @@ export default function Timeline() {
       <p className="eyebrow">CV · timeline view</p>
       <h1>Timeline</h1>
       <p className="document-intro">
-        Scroll through the years to see what I was working on. Tap a category to hide or show it,
-        and tap an entry for details. The full text version is on the <Link href="/resume">CV</Link>{' '}
-        page.
+        Time runs down the page, month by month; each block is as tall as the time it lasted. Tap a
+        category to hide or show it, and tap a block for details. The full text version is on the{' '}
+        <Link href="/resume">CV</Link> page.
       </p>
       <CVTimeline />
     </div>

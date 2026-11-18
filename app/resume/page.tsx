@@ -5,6 +5,7 @@ import PublicationList from '@/components/PublicationList'
 import CVDownload from '@/components/CVDownload'
 import {
   education,
+  selectedCourses,
   researchExperience,
   workExperience,
   teachingExperience,
@@ -46,6 +47,22 @@ export default function Resume() {
       <section id="education" className="academic-section">
         <h2>Education</h2>
         <AcademicEntries entries={education} />
+        <div id="courses" className="selected-courses">
+          <h3>Selected courses</h3>
+          {selectedCourses.map((group) => (
+            <div className="selected-courses-group" key={group.level}>
+              <h4>{group.level}</h4>
+              <ul>
+                {group.courses.map((course) => (
+                  <li key={course.title}>
+                    <span>{course.title}</span>
+                    <span className="course-grade">{course.grade}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
       </section>
       <section id="publications" className="academic-section">
         <h2>Publications</h2>

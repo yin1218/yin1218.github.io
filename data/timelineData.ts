@@ -1,5 +1,9 @@
-// Timeline view of the CV. Years come from data/academicData.ts and the Obsidian
-// CV notes (PhD/申請素材/履歷素材總表). Items sit in the year they started.
+// Timeline view of the CV. Dates come from data/academicData.ts and the Obsidian
+// CV notes (PhD/申請素材/履歷素材總表).
+//
+// `start` / `end` are 'YYYY-MM'. Where the CV only gives a season, the months follow the
+// NTU calendar: spring = Feb–Jun, summer = Jul–Aug, fall = Sep–Jan. Use a bare 'YYYY'
+// start when only the year is known, and end: 'present' for ongoing items.
 export type LaneId = 'education' | 'research' | 'publications' | 'work' | 'teaching' | 'awards'
 
 export const lanes: { id: LaneId; title: string; short: string }[] = [
@@ -13,13 +17,17 @@ export const lanes: { id: LaneId; title: string; short: string }[] = [
 
 export interface TimelineItem {
   lane: LaneId
-  year: number
   title: string
   org: string
-  when: string
+  start: string
+  end?: string
+  note?: string
   detail?: string
   href?: string
 }
+
+// The month the timeline was last brought up to date; it is the top of the axis.
+export const timelineNow = '2026-11'
 
 export const timelineYears = [2026, 2025, 2024, 2023, 2022, 2021]
 
@@ -36,200 +44,195 @@ export const timelineItems: TimelineItem[] = [
   // 2026
   {
     lane: 'education',
-    year: 2026,
     title: 'M.S. in Information Management',
     org: 'National Taiwan University',
-    when: 'Graduated August 2026',
+    start: '2024-09',
+    end: '2026-08',
     detail: 'Advisor: Nanyi Bi. Thesis on AI-generated self-interpretations.',
   },
   {
     lane: 'research',
-    year: 2026,
     title: 'Research Assistant, NSTC project',
     org: 'Supervisor: Nian-Shing Chen',
-    when: 'November 2026 –',
+    start: '2026-11',
+    end: 'present',
     detail: 'Implementing a research system for a project funded by Taiwan’s NSTC.',
   },
   {
     lane: 'research',
-    year: 2026,
     title: 'Part-time Research Assistant',
     org: 'National Taiwan University · Nanyi Bi',
-    when: 'September 2026 –',
+    start: '2026-09',
+    end: '2027-01',
+    note: 'Through January 2027 (expected)',
     detail:
       'A qualitative study of people waiting for AI agents to finish delegated tasks: interviews, analysis, and iterative transcript review.',
   },
   {
     lane: 'publications',
-    year: 2026,
     title: 'Seeing Yourself Before Being Seen',
     org: 'Under review at CHI 2027',
-    when: '2026',
+    start: '2026',
     detail:
       'Participant articulation and anticipated self-presentation with AI-generated self-interpretations.',
     href: '/publications/seeing-yourself',
   },
   {
     lane: 'work',
-    year: 2026,
     title: 'InnoServe Intern',
     org: 'Jubo Health',
-    when: 'Spring – October 2026',
+    start: '2026-02',
+    end: '2026-10',
     detail: 'Digitized order workflows through API automation and consolidated sales logic.',
   },
   // 2025
   {
     lane: 'publications',
-    year: 2025,
     title: 'Beyond Adaptation',
     org: 'CHI EA 2025 · Late-Breaking Work',
-    when: 'April 2025',
+    start: '2025-04',
     detail: 'An LLM-supported self-presentation ideation tool for cross-cultural mingling.',
     href: '/publications/beyond-adaptation',
   },
   {
     lane: 'publications',
-    year: 2025,
     title: 'Oblivilight 憶光',
     org: 'TAICHI 2025 · Demo',
-    when: '2025',
+    start: '2025',
     detail: 'Forgetting mechanisms in generative AI for emotional support; seventh author.',
     href: '/publications/oblivilight',
   },
   {
     lane: 'teaching',
-    year: 2025,
     title: 'Teaching Assistant',
     org: 'Big Data & Business Analytics',
-    when: 'Spring 2025',
+    start: '2025-02',
+    end: '2025-06',
     detail: 'Python practice sessions, student questions, and final-project grading.',
   },
   {
     lane: 'teaching',
-    year: 2025,
     title: 'Technical TA, OpenHCI 2025',
     org: 'OpenHCI',
-    when: 'Summer 2025',
+    start: '2025-07',
+    end: '2025-08',
     detail: 'Guided a six-person team from ideation to an Arduino prototype.',
   },
   {
     lane: 'teaching',
-    year: 2025,
     title: 'Teaching Assistant',
     org: 'Cross-Cultural Communication · Entrepreneurship',
-    when: 'Fall 2025',
+    start: '2025-09',
+    end: '2026-01',
   },
   {
     lane: 'awards',
-    year: 2025,
     title: 'Garmin Scholarship',
     org: 'NT$100,000',
-    when: '2025',
+    start: '2025',
   },
   // 2024
   {
     lane: 'education',
-    year: 2024,
     title: 'B.S. in Information Management',
     org: 'National Taiwan University',
-    when: 'Graduated summer 2024',
+    start: '2020-09',
+    end: '2024-06',
     detail: 'Minor in Philosophy.',
   },
   {
     lane: 'education',
-    year: 2024,
     title: 'Exchange, Computer Science',
     org: 'KTH Royal Institute of Technology',
-    when: 'Spring – summer 2024',
+    start: '2024-01',
+    end: '2024-06',
   },
   {
     lane: 'research',
-    year: 2024,
     title: 'Graduate Research Assistant',
     org: 'National Taiwan University · Nanyi Bi',
-    when: 'Summer 2024 –',
+    start: '2024-07',
+    end: '2026-08',
     detail: 'Seven interviews on cross-cultural mingling and an LLM-supported prototype.',
   },
   // 2023
   {
     lane: 'teaching',
-    year: 2023,
     title: 'Workshop Instructor',
     org: 'Taiwan FactCheck Education Foundation',
-    when: 'Spring 2023',
+    start: '2023-02',
+    end: '2023-06',
     detail: 'Three digital-literacy and fact-checking workshops for older adults.',
   },
   // 2022
   {
     lane: 'research',
-    year: 2022,
     title: 'Undergraduate Research Assistant',
     org: 'Lung-Pan Cheng',
-    when: 'Summer 2022',
+    start: '2022-07',
+    end: '2022-08',
     detail: 'Experiments with 15 participants for a VR changing-perspective projection system.',
   },
   {
     lane: 'research',
-    year: 2022,
     title: 'Undergraduate Research Assistant',
     org: 'Ling-Chieh Kung',
-    when: 'Spring – summer 2022',
+    start: '2022-02',
+    end: '2022-08',
     detail: 'Lasso and Ridge models predicting rider arrival rates for Global Express.',
   },
   {
     lane: 'work',
-    year: 2022,
     title: 'Frontend Developer Intern',
     org: 'LINE Taiwan',
-    when: 'Summer 2022 – summer 2023',
+    start: '2022-07',
+    end: '2023-07',
     detail: 'Frontend modules for LINE TODAY with Nuxt.js.',
   },
   {
     lane: 'work',
-    year: 2022,
     title: 'Part-time Frontend Developer',
     org: 'Junyi Academy',
-    when: 'Fall 2022 – spring 2023',
+    start: '2022-09',
+    end: '2023-06',
     detail: 'A tool for teachers to record students’ non-cognitive development.',
   },
   {
     lane: 'teaching',
-    year: 2022,
     title: 'Lead Coordinator, OpenHCI',
     org: 'OpenHCI',
-    when: 'Spring – summer 2022',
+    start: '2022-02',
+    end: '2022-08',
     detail: 'A five-day HCI workshop for 105 participants.',
   },
   {
     lane: 'teaching',
-    year: 2022,
     title: 'Technical TA',
     org: 'User Interface Design',
-    when: 'Fall 2022',
+    start: '2022-09',
+    end: '2023-01',
   },
   // 2021
   {
     lane: 'work',
-    year: 2021,
     title: 'Student Consultant',
     org: 'Smart Daily & beBit',
-    when: 'Fall 2021 – spring 2022',
+    start: '2021-09',
+    end: '2022-06',
     detail: '12 user interviews and a solution workshop with company staff.',
   },
-  { lane: 'awards', year: 2021, title: 'InnoServe Awards', org: 'Second Prize, IP', when: '2021' },
+  { lane: 'awards', title: 'InnoServe Awards', org: 'Second Prize, IP', start: '2021' },
   {
     lane: 'awards',
-    year: 2021,
     title: 'QS-Wharton Reimagine Education',
     org: 'Finalist',
-    when: '2021',
+    start: '2021',
   },
   {
     lane: 'awards',
-    year: 2021,
     title: 'APP Innovation Competition',
     org: 'Honorable Mention',
-    when: '2021',
+    start: '2021',
   },
-  { lane: 'awards', year: 2021, title: 'Trans Action Award', org: 'HTC Prize', when: '2021' },
+  { lane: 'awards', title: 'Trans Action Award', org: 'HTC Prize', start: '2021' },
 ]

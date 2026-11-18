@@ -30,6 +30,35 @@ export const education = [
   },
 ]
 
+// Selected from the NTU transcripts (graduate record downloaded 2026-07-10; undergraduate
+// record). Only courses close to the research area with a grade of A or A+ are listed.
+// Graduate titles are the official English ones; undergraduate titles are translated.
+export const selectedCourses: { level: string; courses: { title: string; grade: string }[] }[] = [
+  {
+    level: 'Graduate',
+    courses: [
+      { title: 'Research Methods', grade: 'A+' },
+      { title: 'Human Computer Interaction and Social Computing (I) & (II)', grade: 'A+' },
+      { title: 'Human Computer Interaction and User Studies', grade: 'A' },
+      { title: 'Social Design: An Introduction', grade: 'A' },
+      { title: 'Data Strategist', grade: 'A+' },
+    ],
+  },
+  {
+    level: 'Undergraduate',
+    courses: [
+      { title: 'Machine Learning', grade: 'A+' },
+      { title: 'Introduction to Text Mining', grade: 'A+' },
+      { title: 'Big Data and Business Analytics', grade: 'A+' },
+      { title: 'Advanced Interactive Technologies', grade: 'A' },
+      { title: 'Research in HCI and Social Computing', grade: 'A+' },
+      { title: 'Data Structures and Advanced Programming', grade: 'A+' },
+      { title: 'Database Management', grade: 'A+' },
+      { title: 'General Psychology', grade: 'A+' },
+    ],
+  },
+]
+
 export const publication = {
   path: '/publications/beyond-adaptation',
   citationPath: '/static/files/beyond-adaptation.bib',
