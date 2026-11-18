@@ -34,6 +34,6 @@ export const nowItems: NowItem[] = [
     glyph: 'dots',
     text: 'Seeing Yourself Before Being Seen',
     detail: 'Thesis paper, submitted to CHI 2027',
-    href: '/publications#seeing-yourself',
+    href: '/publications/seeing-yourself',
   },
 ]

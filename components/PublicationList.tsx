@@ -13,7 +13,9 @@ export default function PublicationList() {
           <p className="publication-type">
             {item.type} · {item.year}
           </p>
-          <h3>{item.title}</h3>
+          <h3>
+            <Link href={`/publications/${item.id}`}>{item.title}</Link>
+          </h3>
           {item.originalTitle && (
             <p className="publication-original" lang="zh-Hant">
               {item.originalTitle}
@@ -32,16 +34,17 @@ export default function PublicationList() {
             ))}
           </p>
           <p className="publication-venue">{item.venue}</p>
-          {item.links && (
-            <div className="publication-links">
-              {item.links.map((link) => (
-                <Link key={link.label} className="project-link" href={withBase(link.href)}>
-                  {link.label}
-                  {link.href.startsWith('http') && <span aria-hidden="true"> ↗</span>}
-                </Link>
-              ))}
-            </div>
-          )}
+          <div className="publication-links">
+            <Link className="project-link" href={`/publications/${item.id}`}>
+              Read more →
+            </Link>
+            {item.links?.map((link) => (
+              <Link key={link.label} className="project-link" href={withBase(link.href)}>
+                {link.label}
+                {link.href.startsWith('http') && <span aria-hidden="true"> ↗</span>}
+              </Link>
+            ))}
+          </div>
         </li>
       ))}
     </ol>

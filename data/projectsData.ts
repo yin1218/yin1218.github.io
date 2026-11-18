@@ -3,7 +3,7 @@ export interface Project {
   title: string
   description: string
   contribution?: string
-  role?: string
+  roles?: string[]
   date: string
   href?: string
   imgSrc?: string
@@ -16,7 +16,7 @@ const projectsData: Project[] = [
   {
     id: 'pathfinder',
     title: 'Pathfinder',
-    role: 'Machine learning & deployment',
+    roles: ['Machine learning', 'Deployment'],
     description:
       'A mobile application helping students write academic portfolios and explore suitable majors based on their records.',
     contribution:
@@ -29,7 +29,7 @@ const projectsData: Project[] = [
   {
     id: 'gotcha',
     title: 'GOTCHA',
-    role: 'User research',
+    roles: ['User research'],
     description:
       '“Got you in charity!” A mobile application prototype addressing uneven fundraising among small nonprofit organizations.',
     contribution:
@@ -42,7 +42,7 @@ const projectsData: Project[] = [
   {
     id: 'dormy',
     title: 'Dormy, be your homie',
-    role: 'Concept & development',
+    roles: ['Concept', 'Development'],
     description:
       'A service-matching website helping National Taiwan University dormitory residents meet their everyday needs.',
     contribution: 'Conceived and developed the platform with React.js.',
@@ -54,7 +54,7 @@ const projectsData: Project[] = [
   {
     id: 'swappy',
     title: 'Swappy',
-    role: 'Prototyping & frontend development',
+    roles: ['Prototyping', 'Frontend development'],
     description:
       'A mobile application encouraging people to exchange unused items through decluttering challenges and barter-based groups.',
     contribution:
@@ -67,7 +67,7 @@ const projectsData: Project[] = [
   {
     id: 'habitra',
     title: 'Habitra, habit tracker',
-    role: 'Concept & development',
+    roles: ['Concept', 'Development'],
     description: 'A website helping people form habits by gathering with others and setting goals.',
     contribution: 'Conceived and developed the website with React.js.',
     date: 'Winter 2021',

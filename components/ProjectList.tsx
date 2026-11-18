@@ -1,5 +1,6 @@
 import Image from '@/components/Image'
 import Link from '@/components/Link'
+import RolePills from '@/components/RolePills'
 import projectsData from '@/data/projectsData'
 
 export default function ProjectList({
@@ -48,7 +49,7 @@ export default function ProjectList({
                 project.title
               )}
             </h2>
-            {project.role && <p className="project-role">My role: {project.role}</p>}
+            {project.roles && <RolePills roles={project.roles} />}
             <p>{project.description}</p>
             {detailed && project.contribution && (
               <p className="project-contribution">{project.contribution}</p>

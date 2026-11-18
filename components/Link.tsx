@@ -20,7 +20,7 @@ function analyticsDetails(href: string) {
   if (/^https:\/\/(www\.)?(youtube\.com|youtu\.be)\//.test(href)) {
     return { event: 'demo_open', resource: 'project-demo' }
   }
-  if (href === '/research/beyond-adaptation') {
+  if (href === '/publications/beyond-adaptation') {
     return { event: 'research_open', resource: 'beyond-adaptation' }
   }
 }

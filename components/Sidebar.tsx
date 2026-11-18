@@ -16,12 +16,6 @@ export default function Sidebar() {
         <p>Research & everyday observations</p>
       </div>
       <SidebarNavigation />
-      <div className="sidebar-contact">
-        <Link href={`mailto:${siteMetadata.email}`}>
-          Get in touch <span aria-hidden="true">↗</span>
-        </Link>
-        <p>Observer, with a camera.</p>
-      </div>
     </aside>
   )
 }

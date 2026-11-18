@@ -883,21 +883,6 @@ body {
   color: #93442f;
   background: #eee7dc;
 }
-.sidebar-contact {
-  margin-top: 2rem;
-  padding: 1rem 0.75rem 0;
-  border-top: 1px solid #d5cabe;
-}
-.sidebar-contact a {
-  font-size: 0.75rem;
-}
-.sidebar-contact p {
-  margin-top: 0.75rem;
-  font:
-    italic 0.8rem/1.6 Georgia,
-    serif;
-  color: var(--color-gray-500);
-}
 .sidebar-menu-button {
   display: grid;
   place-items: center;
@@ -949,8 +934,7 @@ body {
   color: #dfaa92;
   border-left-color: #dfaa92;
 }
-.dark .sidebar-sections,
-.dark .sidebar-contact {
+.dark .sidebar-sections {
   border-color: #575149;
 }
 @media (min-width: 1024px) {
@@ -1385,8 +1369,7 @@ body {
 .research-document .document-intro {
   margin-bottom: 1rem;
 }
-.research-byline,
-.project-entry .project-role {
+.research-byline {
   color: var(--color-gray-600);
   font-size: 0.8rem;
   line-height: 1.8;
@@ -1447,7 +1430,6 @@ body {
   outline-color: #dfaa92;
 }
 .dark .research-byline,
-.dark .project-entry .project-role,
 .dark .study-process figcaption {
   color: var(--color-gray-400);
 }
@@ -2040,4 +2022,64 @@ body {
     .home-now.is-ready .home-now-item::before { transform: scaleY(0); }
     .home-now-item:hover::before { height: auto; width: 4px; }
   }
+}
+
+/* Role pills (projects and publication pages) */
+.role-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.6rem 0 0.75rem;
+  padding: 0;
+  list-style: none;
+}
+.academic-prose .role-pills {
+  padding-left: 0;
+}
+.role-pills li {
+  margin: 0;
+  padding: 0.15rem 0.7rem;
+  border: 1px solid #d5cabe;
+  border-radius: 999px;
+  background: #f4eee6;
+  color: #6f3524;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+.role-pills li::before,
+.role-pills li::marker {
+  content: none;
+}
+.dark .role-pills li {
+  border-color: #4a403a;
+  background: #2a2421;
+  color: #e6c3b3;
+}
+
+/* Footer contact */
+.academic-footer {
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+.footer-contact h2 {
+  margin: 0 0 0.4rem;
+  color: var(--color-gray-500);
+  font:
+    0.7rem/1.6 ui-monospace,
+    monospace;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.footer-contact > a {
+  font-size: 0.9rem;
+  color: var(--color-gray-900);
+}
+.dark .footer-contact > a {
+  color: var(--color-gray-100);
+}
+.footer-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.4rem;
 }

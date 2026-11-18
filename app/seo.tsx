@@ -20,7 +20,7 @@ export const pageSEO = {
       'Explore five projects by Chien-Yin Wu: Pathfinder, GOTCHA, Dormy, Swappy, and Habitra, with contributions and demos.',
   },
   beyondAdaptation: {
-    path: '/research/beyond-adaptation',
+    path: '/publications/beyond-adaptation',
     title: 'Beyond Adaptation · CHI EA 2025',
     description:
       'Beyond Adaptation by Chien-Yin Wu and Nanyi Bi: seven interviews and an LLM-supported self-presentation ideation prototype for cross-cultural mingling, CHI EA 2025.',

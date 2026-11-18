@@ -53,7 +53,11 @@ export default function SidebarNavigation({ onNavigate }: { onNavigate?: () => v
             key={link.href}
             href={link.href}
             onClick={onNavigate}
-            aria-current={pathname === link.href ? 'page' : undefined}
+            aria-current={
+              pathname === link.href || (link.href !== '/' && pathname.startsWith(`${link.href}/`))
+                ? 'page'
+                : undefined
+            }
           >
             <span className="sidebar-number" aria-hidden="true">
               0{index + 1}

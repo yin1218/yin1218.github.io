@@ -1,6 +1,7 @@
+import { publicationDetails } from './publicationDetails'
+
 export const siteLinks = [
   { href: '/', title: 'Home' },
-  { href: '/research/beyond-adaptation', title: 'Research' },
   { href: '/publications', title: 'Publications' },
   { href: '/projects', title: 'Projects' },
   { href: '/about', title: 'About' },
@@ -8,22 +9,20 @@ export const siteLinks = [
 ]
 
 export const pageSections: Record<string, { id: string; title: string }[]> = {
-  '/': [
-    { id: 'profile', title: 'Introduction' },
-    { id: 'publication', title: 'Featured research' },
-    { id: 'projects', title: 'Projects' },
-  ],
-  '/research/beyond-adaptation': [
-    { id: 'overview', title: 'Overview' },
-    { id: 'approach', title: 'Research approach' },
-    { id: 'contribution', title: 'My contribution' },
-    { id: 'publication', title: 'Paper & citation' },
-  ],
+  ...Object.fromEntries(
+    publicationDetails.map((detail) => [
+      `/publications/${detail.id}`,
+      [
+        ...detail.sections.map((section) => ({ id: section.id, title: section.nav })),
+        { id: 'role', title: 'My role' },
+        { id: 'citation', title: 'Citation' },
+      ],
+    ])
+  ),
   '/about': [
     { id: 'research', title: 'Research' },
     { id: 'working-with-people-and-technology', title: 'Experience' },
     { id: 'beyond-research', title: 'Beyond research' },
-    { id: 'contact', title: 'Contact' },
   ],
   '/resume': [
     { id: 'education', title: 'Education' },

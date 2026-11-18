@@ -31,7 +31,7 @@ export const education = [
 ]
 
 export const publication = {
-  path: '/research/beyond-adaptation',
+  path: '/publications/beyond-adaptation',
   citationPath: '/static/files/beyond-adaptation.bib',
   datePublished: '2025-04-25',
   title:
@@ -77,7 +77,6 @@ export const publications: PublicationItem[] = [
     venue:
       'Extended Abstracts of the CHI Conference on Human Factors in Computing Systems (CHI EA ’25) · Late-Breaking Work',
     links: [
-      { label: 'Overview', href: publication.path },
       { label: 'Paper', href: publication.href },
       { label: 'BibTeX', href: publication.citationPath },
     ],

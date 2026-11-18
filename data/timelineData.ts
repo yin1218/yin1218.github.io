@@ -67,7 +67,7 @@ export const timelineItems: TimelineItem[] = [
     when: '2026',
     detail:
       'Participant articulation and anticipated self-presentation with AI-generated self-interpretations.',
-    href: '/publications#seeing-yourself',
+    href: '/publications/seeing-yourself',
   },
   {
     lane: 'work',
@@ -85,7 +85,7 @@ export const timelineItems: TimelineItem[] = [
     org: 'CHI EA 2025 · Late-Breaking Work',
     when: 'April 2025',
     detail: 'An LLM-supported self-presentation ideation tool for cross-cultural mingling.',
-    href: '/research/beyond-adaptation',
+    href: '/publications/beyond-adaptation',
   },
   {
     lane: 'publications',
@@ -94,7 +94,7 @@ export const timelineItems: TimelineItem[] = [
     org: 'TAICHI 2025 · Demo',
     when: '2025',
     detail: 'Forgetting mechanisms in generative AI for emotional support; seventh author.',
-    href: '/publications#oblivilight',
+    href: '/publications/oblivilight',
   },
   {
     lane: 'teaching',
