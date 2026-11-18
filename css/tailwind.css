@@ -671,6 +671,23 @@ body {
   display: grid;
   gap: 2rem;
 }
+.project-filter {
+  margin: 0 0 2rem;
+}
+.project-entry {
+  animation: project-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+@keyframes project-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-entry {
+    animation: none;
+  }
+}
 .project-entry {
   display: grid;
   grid-template-columns: 180px minmax(0, 1fr);
@@ -2652,7 +2669,7 @@ html[data-atmosphere] body {
   min-height: 2.8em;
   color: var(--color-gray-500);
 }
-.beyond-card .beyond-more {
+.academic-prose .beyond-card .beyond-more {
   margin-top: auto;
   padding-top: 0.3rem;
 }

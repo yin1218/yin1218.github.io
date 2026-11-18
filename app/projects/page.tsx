@@ -15,7 +15,7 @@ export default function Projects() {
         Applications and prototypes across education, community services, and everyday life.
       </p>
       <div className="mt-10">
-        <ProjectList detailed />
+        <ProjectList detailed filterable />
       </div>
     </div>
   )

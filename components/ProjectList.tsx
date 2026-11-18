@@ -1,24 +1,55 @@
+'use client'
+
+import { useState } from 'react'
 import Image from '@/components/Image'
 import Link from '@/components/Link'
 import RolePills from '@/components/RolePills'
 import projectsData from '@/data/projectsData'
 
+// Every tag used by at least one project, in order of first appearance.
+const tags = [...new Set(projectsData.flatMap((project) => project.roles ?? []))]
+
 export default function ProjectList({
   featuredOnly = false,
   detailed = false,
+  filterable = false,
 }: {
   featuredOnly?: boolean
   detailed?: boolean
+  filterable?: boolean
 }) {
-  const projects = featuredOnly ? projectsData.filter((project) => project.featured) : projectsData
+  const [tag, setTag] = useState<string | null>(null)
+  const all = featuredOnly ? projectsData.filter((project) => project.featured) : projectsData
+  const projects = tag ? all.filter((project) => project.roles?.includes(tag)) : all
   return (
     <div className="project-list">
+      {filterable && (
+        <div
+          className="home-reading project-filter"
+          role="group"
+          aria-label="Filter projects by tag"
+        >
+          <button type="button" aria-pressed={tag === null} onClick={() => setTag(null)}>
+            All
+          </button>
+          {tags.map((item) => (
+            <button
+              key={item}
+              type="button"
+              aria-pressed={tag === item}
+              onClick={() => setTag(tag === item ? null : item)}
+            >
+              {item}
+            </button>
+          ))}
+        </div>
+      )}
       {projects.map((project, index) => (
         <article
           id={project.id}
           aria-labelledby={`${project.id}-title`}
           className={project.imgSrc ? 'project-entry' : 'project-entry project-entry-text'}
-          key={project.title}
+          key={`${tag}-${project.id}`}
         >
           {project.imgSrc && (
             <Link

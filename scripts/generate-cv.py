@@ -176,11 +176,8 @@ story.extend(entry(item) for item in data['projects'])
 section('Honors & awards', academic['awards'])
 story.append(paragraph('Skills & languages', 'CVSection'))
 for item in academic['skills']:
-    story.append(KeepTogether([
-        paragraph(text(item['title']), 'CVTitle'),
-        paragraph(text(item['description'])),
-        Spacer(1, 3),
-    ]))
+    story.append(paragraph(f"<b>{text(item['title'])}:</b> {text(item['description'])}"))
+    story.append(Spacer(1, 2))
 
 doc.build(story, onFirstPage=footer, onLaterPages=footer)
 temporary_output.replace(output)

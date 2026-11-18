@@ -32,7 +32,7 @@ export default function BeyondResearch() {
     <div className="beyond-cards">
       <section className="beyond-card" aria-labelledby="beyond-cafes">
         <p className="beyond-eyebrow">Atmosphere</p>
-        <h3 id="beyond-cafes">Cafés</h3>
+        <h3 id="beyond-cafes">Café</h3>
         <div className="home-reading" role="group" aria-label="Light the page like a café">
           {lights.map((item) => (
             <button
@@ -90,10 +90,8 @@ export default function BeyondResearch() {
       </section>
 
       <section className="beyond-card" aria-labelledby="beyond-sports">
-        <p className="beyond-eyebrow">
-          {triedSports.length} / {sports.length} collected
-        </p>
-        <h3 id="beyond-sports">Sports</h3>
+        <p className="beyond-eyebrow">Collecting</p>
+        <h3 id="beyond-sports">Sport</h3>
         <ul className="beyond-dots" onMouseLeave={() => setSport(null)}>
           {sports.map((item, index) => (
             <li key={item.name}>
@@ -119,7 +117,7 @@ export default function BeyondResearch() {
               {current.tried ? ' · tried' : ' · next on the list'}
             </>
           ) : (
-            '\u00a0'
+            `${triedSports.length} of ${sports.length} tried so far.`
           )}
         </p>
         <p className="beyond-more">

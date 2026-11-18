@@ -250,19 +250,28 @@ export const awards = [
   { title: 'Trans Action Award', date: '2021', description: 'HTC Prize.' },
 ]
 
+// Grouping and items follow the "Methods and Technical Skills" section of the English CV
+// (Obsidian PhD/申請素材/英文履歷, 2026-11-18).
 export const skills = [
   {
-    title: 'Research & design',
+    title: 'Qualitative methods',
     description:
-      'User interviews, experiment design, workshop facilitation, prototyping, service innovation.',
+      'Semi-structured interviews, think-aloud sessions, thematic analysis, workshop facilitation.',
   },
   {
-    title: 'Development',
-    description: 'Python, C/C++, JavaScript, React, Vue / Nuxt.js, Node.js, PostgreSQL.',
+    title: 'Quantitative methods',
+    description: 'Survey design, experimental design, ANOVA, regression.',
   },
+  { title: 'Design & prototyping', description: 'Figma, interface prototyping.' },
+  { title: 'Physical computing', description: 'Arduino, Raspberry Pi.' },
   {
-    title: 'Data & machine learning',
-    description: 'PyTorch, scikit-learn, NumPy, pandas; Lasso and Ridge regression.',
+    title: 'Frontend',
+    description: 'JavaScript / TypeScript, React, Next.js, Vue / Nuxt.js.',
   },
-  { title: 'Languages', description: 'Chinese (native); English (TOEFL 106).' },
+  { title: 'Backend & cloud', description: 'Python, Node.js, PostgreSQL, AWS, GCP.' },
+  {
+    title: 'AI & machine learning',
+    description: 'LLM API integration, PyTorch, scikit-learn, NumPy, pandas.',
+  },
+  { title: 'Languages', description: 'Mandarin Chinese (native); English (TOEFL iBT 106).' },
 ]
