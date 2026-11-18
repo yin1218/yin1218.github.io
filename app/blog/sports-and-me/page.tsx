@@ -19,6 +19,11 @@ export default function SportsAndMe() {
 
       <h2 id="why">Why I started</h2>
       <p>
+        I was born with a heart that had not finished forming. It did finish growing later, but by
+        then the habit was set: in many situations I was not encouraged to exercise, and so I did
+        not.
+      </p>
+      <p>
         During university I spent long hours in front of a screen, between coursework and
         competitions, and then the pandemic kept me at home. Somewhere in there I began to feel that
         staying connected to my body mattered, so I started trying different sports.

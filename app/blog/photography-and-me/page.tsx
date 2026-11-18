@@ -9,7 +9,6 @@ export default function PhotographyAndMe() {
       <p className="eyebrow">Beyond research</p>
       <h1>Photography and me</h1>
       <p className="document-intro">What I think photography means, and how that changed.</p>
-      <p className="essay-meta">Translated from a note I wrote in Chinese</p>
 
       <h2 id="record">A way to record what was real</h2>
       <blockquote className="essay-quote">
@@ -25,8 +24,9 @@ export default function PhotographyAndMe() {
       <h2 id="unease">A strange feeling at the exhibition</h2>
       <p>
         The World Press Photo exhibition used to leave me shaken. This year it left me with an odd,
-        uneasy feeling instead, and I could not name it until I read Wang Cheng-Hsiang’s
-        《旁觀的方式》. It is a wonderful book, and I want to read it again when I have time.
+        uneasy feeling instead, and I could not name it until I read Wang Cheng-Hsiang’s{' '}
+        <cite>Ways of Looking On</cite>. It is a wonderful book, and I want to read it again when I
+        have time.
       </p>
       <p>
         The book points out that modernism treated “presenting the real” as its highest rule, yet

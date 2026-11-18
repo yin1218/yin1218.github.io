@@ -15,7 +15,7 @@ export interface Sport {
 export const triedSports: Sport[] = [
   { name: 'Running' },
   { name: 'Locking' },
-  { name: 'Modern dance (contact improvisation)' },
+  { name: 'Contact improvisation' },
   { name: 'Kayaking' },
   { name: 'Stand-up paddleboarding' },
   { name: 'Swimming' },

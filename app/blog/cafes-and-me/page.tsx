@@ -137,6 +137,10 @@ export default function CafesAndMe() {
         space really curates: the room, the programme, or the people. I will keep going to cafés to
         find out.
       </p>
+      <p>
+        I post the cafés I visit on Threads at{' '}
+        <Link href="https://www.threads.com/@wpbag.cafe">@wpbag.cafe</Link>.
+      </p>
 
       <h2 id="reading">Reading behind this</h2>
       <ul>
