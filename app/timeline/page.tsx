@@ -1,20 +1,19 @@
-import CVTimeline from '@/components/CVTimeline'
 import Link from '@/components/Link'
-import { genPageMetadata, pageSEO } from 'app/seo'
 
-export const metadata = genPageMetadata(pageSEO.timeline)
+// The timeline is now a view of the CV; keep the old address working.
+export const metadata = {
+  title: 'Timeline',
+  robots: { index: false, follow: true },
+}
 
-export default function Timeline() {
+export default function TimelineMoved() {
   return (
-    <div className="academic-document cvt-page">
-      <p className="eyebrow">CV · timeline view</p>
-      <h1>Timeline</h1>
+    <div className="academic-document">
+      <meta httpEquiv="refresh" content="0; url=/resume#timeline" />
+      <h1>This page has moved</h1>
       <p className="document-intro">
-        Time runs down the page, month by month; each block is as tall as the time it lasted. Tap a
-        category to hide or show it, and tap a block for details. The full text version is on the{' '}
-        <Link href="/resume">CV</Link> page.
+        <Link href="/resume#timeline">Go to the CV timeline</Link>
       </p>
-      <CVTimeline />
     </div>
   )
 }

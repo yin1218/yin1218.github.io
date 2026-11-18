@@ -76,7 +76,7 @@ export default function NowBlock() {
           </li>
         ))}
       </ul>
-      <Link className="home-detail-link" href="/timeline">
+      <Link className="home-detail-link" href="/resume#timeline">
         How I got here: timeline
       </Link>
     </section>

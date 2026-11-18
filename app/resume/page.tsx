@@ -3,6 +3,7 @@ import siteMetadata from '@/data/siteMetadata'
 import AcademicEntries from '@/components/AcademicEntries'
 import PublicationList from '@/components/PublicationList'
 import CVDownload from '@/components/CVDownload'
+import CVViews from '@/components/CVViews'
 import {
   education,
   selectedCourses,
@@ -21,19 +22,24 @@ export const metadata = genPageMetadata(pageSEO.resume)
 
 export default function Resume() {
   return (
-    <div className="academic-document">
-      <StructuredData data={profileStructuredData(pageSEO.resume)} />
-      <p className="eyebrow">
-        Chien-Yin Wu · <span lang="zh-Hant">巫芊瑩</span>
-      </p>
-      <h1>Curriculum vitae</h1>
-      <p className="document-intro">
-        Human–computer interaction, human-centered AI, and cross-cultural communication. Experience
-        in user research, frontend development, and service innovation.
-      </p>
-      <div className="document-actions">
-        <CVDownload />
-      </div>
+    <CVViews
+      header={
+        <>
+          <StructuredData data={profileStructuredData(pageSEO.resume)} />
+          <p className="eyebrow">
+            Chien-Yin Wu · <span lang="zh-Hant">巫芊瑩</span>
+          </p>
+          <h1>Curriculum vitae</h1>
+          <p className="document-intro">
+            Human–computer interaction, human-centered AI, and cross-cultural communication.
+            Experience in user research, frontend development, and service innovation.
+          </p>
+          <div className="document-actions">
+            <CVDownload />
+          </div>
+        </>
+      }
+    >
       <nav className="cv-navigation" aria-label="CV sections">
         <Link href="#education">Education</Link>
         <Link href="#publications">Publications</Link>
@@ -125,6 +131,6 @@ export default function Resume() {
           {siteMetadata.linkedin && <Link href={siteMetadata.linkedin}>LinkedIn</Link>}
         </div>
       </section>
-    </div>
+    </CVViews>
   )
 }

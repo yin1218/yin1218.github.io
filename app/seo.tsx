@@ -31,13 +31,6 @@ export const pageSEO = {
     description:
       'Publications by Chien-Yin Wu (巫芊瑩): CHI EA 2025 Late-Breaking Work, a manuscript under review at CHI 2027, and a TAICHI 2025 demo.',
   },
-  timeline: {
-    path: '/timeline',
-    title: 'Timeline',
-    description:
-      'A year-by-year timeline of Chien-Yin Wu’s research, publications, work, teaching, and awards.',
-    index: false,
-  },
   resume: {
     path: '/resume',
     title: 'Academic CV',
