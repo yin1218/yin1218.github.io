@@ -29,6 +29,10 @@ export default function SportsAndMe() {
         staying connected to my body mattered, so I started trying different sports.
       </p>
       <p>
+        For me, sport is a way to feel connected to the world. It is also a way of proving something
+        to myself: I can do this too.
+      </p>
+      <p>
         The list below makes me sound athletic. In truth, I get out of breath after one flight of
         stairs.
       </p>
