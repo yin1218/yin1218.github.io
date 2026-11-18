@@ -2274,3 +2274,22 @@ body {
   font-size: 0.8rem;
   color: var(--color-gray-500);
 }
+
+.academic-prose ul.sports-list {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.academic-prose .sports-list li {
+  margin: 0;
+  padding: 0.2rem 0.65rem;
+  border: 1px solid #e2d9cf;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+.dark .academic-prose .sports-list li {
+  border-color: var(--color-gray-700);
+}

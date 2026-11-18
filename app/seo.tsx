@@ -43,6 +43,12 @@ export const pageSEO = {
     description:
       'A first-person essay by Chien-Yin Wu on going to cafés: atmosphere, place, civil inattention, and the ticket to talk.',
   },
+  sports: {
+    path: '/blog/sports-and-me',
+    title: 'Sports and me',
+    description:
+      'The sports Chien-Yin Wu has tried so far, why the collecting started, and the ones still on the list.',
+  },
   photography: {
     path: '/blog/photography-and-me',
     title: 'Photography and me',
