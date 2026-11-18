@@ -1,0 +1,106 @@
+'use client'
+
+import { useRef, useState } from 'react'
+
+export default function NamePronunciation({ audioSrc }: { audioSrc: string }) {
+  // Replace public/static/audio/chien-yin-wu.mp3 with a personal recording.
+  const audioRef = useRef<HTMLAudioElement>(null)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [error, setError] = useState('')
+
+  const togglePlayback = async () => {
+    const audio = audioRef.current
+    if (!audio) return
+
+    setError('')
+    if (!audio.paused) {
+      audio.pause()
+      return
+    }
+
+    try {
+      if (audio.error) audio.load()
+      if (audio.ended) audio.currentTime = 0
+      await audio.play()
+    } catch (error) {
+      if (error instanceof DOMException && error.name === 'AbortError') return
+      setIsPlaying(false)
+      setError('Audio is unavailable. Please try again.')
+    }
+  }
+
+  return (
+    <div className="name-pronunciation">
+      <div className="name-pronunciation-heading">
+        <span className="name-pronunciation-chinese" lang="zh-Hant">
+          巫芊瑩
+        </span>
+        <button
+          type="button"
+          className="name-pronunciation-button"
+          data-analytics-event={isPlaying ? 'name_pronunciation_pause' : 'name_pronunciation_play'}
+          data-analytics-resource="name"
+          onClick={togglePlayback}
+          aria-label={
+            isPlaying
+              ? 'Pause name pronunciation'
+              : 'Listen to the pronunciation of 巫芊瑩 in Mandarin'
+          }
+          aria-pressed={isPlaying}
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            {isPlaying ? (
+              <path d="M9 5v14M15 5v14" />
+            ) : (
+              <>
+                <path d="m11 5-6 4H2v6h3l6 4V5Z" />
+                <path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14" />
+              </>
+            )}
+          </svg>
+          <span>{isPlaying ? 'Pause' : 'Listen'}</span>
+        </button>
+      </div>
+      <div className="name-pronunciation-guide">
+        <span>
+          <span className="name-pronunciation-label">KK (approx.)</span>{' '}
+          <span className="name-pronunciation-phonetics">[wu tʃjɛn ɪŋ]</span>
+        </span>
+      </div>
+      <audio
+        ref={audioRef}
+        src={audioSrc}
+        preload="none"
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
+        onEnded={() => setIsPlaying(false)}
+        onError={() => {
+          setIsPlaying(false)
+          setError('Audio is unavailable. Please try again.')
+        }}
+      >
+        <track
+          kind="captions"
+          src={audioSrc.replace(/\.mp3$/, '.vtt')}
+          srcLang="zh-Hant"
+          label="巫芊瑩"
+        />
+      </audio>
+      {error && (
+        <p className="name-pronunciation-error" role="status">
+          {error}
+        </p>
+      )}
+    </div>
+  )
+}

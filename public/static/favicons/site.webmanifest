@@ -1,14 +1,16 @@
 {
-  "name": "",
-  "short_name": "",
+  "name": "Chien-Yin Wu · 巫芊瑩",
+  "short_name": "Chien-Yin Wu",
+  "lang": "en",
+  "start_url": "../../",
   "icons": [
     {
-      "src": "/android-chrome-96x96.png",
+      "src": "android-chrome-96x96.png",
       "sizes": "96x96",
       "type": "image/png"
     }
   ],
-  "theme_color": "#000000",
-  "background_color": "#000000",
+  "theme_color": "#93442f",
+  "background_color": "#ffffff",
   "display": "standalone"
 }

@@ -1,4 +1,11 @@
 import Link from '@/components/Link'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Page not found',
+  robots: { index: false, follow: true, googleBot: { index: false, follow: true } },
+  alternates: { canonical: null },
+}
 
 export default function NotFound() {
   return (
@@ -9,10 +16,8 @@ export default function NotFound() {
         </h1>
       </div>
       <div className="max-w-md">
-        <p className="mb-4 text-xl leading-normal font-bold md:text-2xl">
-          Sorry we couldn't find this page.
-        </p>
-        <p className="mb-8">But dont worry, you can find plenty of other things on our homepage.</p>
+        <p className="mb-4 text-xl leading-normal font-bold md:text-2xl">Page not found.</p>
+        <p className="mb-8">Find my research, projects, and CV from the homepage.</p>
         <Link
           href="/"
           className="focus:shadow-outline-blue inline rounded-lg border border-transparent bg-blue-600 px-4 py-2 text-sm leading-5 font-medium text-white shadow-xs transition-colors duration-150 hover:bg-blue-700 focus:outline-hidden dark:hover:bg-blue-500"

@@ -1,9 +1,15 @@
-import { sortPosts, allCoreContent } from 'pliny/utils/contentlayer'
-import { allBlogs } from 'contentlayer/generated'
 import Main from './Main'
+import StructuredData from '@/components/StructuredData'
+import { profileStructuredData } from '@/data/structuredData'
+import { genPageMetadata, pageSEO } from './seo'
 
-export default async function Page() {
-  const sortedPosts = sortPosts(allBlogs)
-  const posts = allCoreContent(sortedPosts)
-  return <Main posts={posts} />
+export const metadata = genPageMetadata({ ...pageSEO.home, absoluteTitle: true })
+
+export default function Page() {
+  return (
+    <>
+      <StructuredData data={profileStructuredData(pageSEO.home)} />
+      <Main />
+    </>
+  )
 }

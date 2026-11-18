@@ -1,32 +1,111 @@
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 import siteMetadata from '@/data/siteMetadata'
+
+export const pageSEO = {
+  home: {
+    path: '/',
+    title: `${siteMetadata.title} | HCI & Human-Centered AI`,
+    description: siteMetadata.description,
+  },
+  about: {
+    path: '/about',
+    title: 'About',
+    description:
+      'Meet Chien-Yin Wu (巫芊瑩): NTU Information Management graduate with experience in HCI research, human-centered AI, user research, and frontend development.',
+  },
+  projects: {
+    path: '/projects',
+    title: 'Projects & Demos',
+    description:
+      'Explore five projects by Chien-Yin Wu: Pathfinder, GOTCHA, Dormy, Swappy, and Habitra, with contributions and demos.',
+  },
+  beyondAdaptation: {
+    path: '/research/beyond-adaptation',
+    title: 'Beyond Adaptation · CHI EA 2025',
+    description:
+      'Beyond Adaptation by Chien-Yin Wu and Nanyi Bi: seven interviews and an LLM-supported self-presentation ideation prototype for cross-cultural mingling, CHI EA 2025.',
+  },
+  publications: {
+    path: '/publications',
+    title: 'Publications',
+    description:
+      'Publications by Chien-Yin Wu (巫芊瑩): CHI EA 2025 Late-Breaking Work, a manuscript under review at CHI 2027, and a TAICHI 2025 demo.',
+  },
+  timeline: {
+    path: '/timeline',
+    title: 'Timeline',
+    description:
+      'A year-by-year timeline of Chien-Yin Wu’s research, publications, work, teaching, and awards.',
+    index: false,
+  },
+  resume: {
+    path: '/resume',
+    title: 'Academic CV',
+    description:
+      'Academic CV of Chien-Yin Wu (巫芊瑩): NTU education, publications, research, frontend development, teaching, awards, and technical skills.',
+  },
+  cafes: {
+    path: '/blog/cafes-and-me',
+    title: 'Cafés and me',
+    description: 'A reflection on my relationship with cafés. Coming soon.',
+    index: false,
+  },
+  photography: {
+    path: '/blog/photography-and-me',
+    title: 'Photography and me',
+    description: 'A reflection on my relationship with photography. Coming soon.',
+    index: false,
+  },
+} as const
+
+export function absoluteUrl(path = '/') {
+  return `${siteMetadata.siteUrl}${path.startsWith('/') ? path : `/${path}`}`
+}
 
 interface PageSEOProps {
   title: string
-  description?: string
-  image?: string
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [key: string]: any
+  description: string
+  path: string
+  absoluteTitle?: boolean
+  index?: boolean
 }
 
-export function genPageMetadata({ title, description, image, ...rest }: PageSEOProps): Metadata {
+export function genPageMetadata({
+  title,
+  description,
+  path,
+  absoluteTitle = false,
+  index = true,
+}: PageSEOProps): Metadata {
+  const fullTitle = absoluteTitle ? title : `${title} | ${siteMetadata.title}`
+  const image = {
+    url: absoluteUrl(siteMetadata.socialBanner),
+    width: 1200,
+    height: 630,
+    alt: 'Chien-Yin Wu — human–computer interaction and human-centered AI',
+  }
+
   return {
-    title,
-    description: description || siteMetadata.description,
+    title: absoluteTitle ? { absolute: title } : title,
+    description,
+    alternates: { canonical: absoluteUrl(path) },
+    ...(!index && {
+      robots: { index: false, follow: true, googleBot: { index: false, follow: true } },
+    }),
     openGraph: {
-      title: `${title} | ${siteMetadata.title}`,
-      description: description || siteMetadata.description,
-      url: './',
+      title: fullTitle,
+      description,
+      url: absoluteUrl(path),
       siteName: siteMetadata.title,
-      images: image ? [image] : [siteMetadata.socialBanner],
-      locale: 'en_US',
+      images: [image],
+      locale: siteMetadata.locale,
       type: 'website',
     },
     twitter: {
-      title: `${title} | ${siteMetadata.title}`,
+      title: fullTitle,
+      description,
       card: 'summary_large_image',
-      images: image ? [image] : [siteMetadata.socialBanner],
+      images: [image],
     },
-    ...rest,
   }
 }

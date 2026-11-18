@@ -39,6 +39,11 @@ jobs:
           EXPORT: 1
           UNOPTIMIZED: 1
           BASE_PATH: ${{ steps.configurepages.outputs.base_path }}
+          SITE_URL: ${{ vars.SITE_URL || 'https://chienyinwu.com' }}
+          NEXT_UMAMI_ID: ${{ vars.UMAMI_WEBSITE_ID }}
+          UMAMI_SCRIPT_URL: ${{ vars.UMAMI_SCRIPT_URL }}
+          UMAMI_DOMAINS: ${{ vars.UMAMI_DOMAINS }}
+          GOOGLE_SITE_VERIFICATION: ${{ vars.GOOGLE_SITE_VERIFICATION }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
