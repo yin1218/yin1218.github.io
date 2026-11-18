@@ -39,6 +39,8 @@ export default function BeyondResearch() {
               key={item.id}
               type="button"
               aria-pressed={atmosphere === item.id}
+              data-analytics-event="atmosphere_set"
+              data-analytics-resource={item.id}
               onClick={() => (atmosphere === item.id ? clear() : light(item.id))}
             >
               {item.label}

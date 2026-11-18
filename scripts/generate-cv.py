@@ -21,7 +21,7 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.cidfonts import UnicodeCIDFont
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import (
-    KeepTogether, PageBreak, Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle,
+    KeepTogether, Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle,
 )
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -146,7 +146,7 @@ story.append(paragraph(' | '.join([
 ])))
 
 section('Education', academic['education'])
-story.append(paragraph('Publications', 'CVSection'))
+story.append(paragraph('Publications &amp; demonstrations', 'CVSection'))
 for paper in academic['publications']:
     authors = ', '.join(
         f'<b>{mixed(name)}</b>' if name == academic['selfName'] else mixed(name)
@@ -164,13 +164,11 @@ for paper in academic['publications']:
     story.append(KeepTogether(lines))
 section('Research experience', academic['researchExperience'])
 
-story.append(PageBreak())
 story.append(paragraph('Experience & service', 'CVSection'))
 section('Work experience', academic['workExperience'])
 section('Teaching', academic['teachingExperience'])
 section('Leadership & service', academic['leadershipExperience'])
 
-story.append(PageBreak())
 story.append(paragraph('Projects', 'CVSection'))
 story.extend(entry(item) for item in data['projects'])
 section('Honors & awards', academic['awards'])

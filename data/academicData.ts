@@ -14,7 +14,7 @@ export const education = [
     organization: 'National Taiwan University',
     date: 'Fall 2024 – August 2026',
     description:
-      'Advisor: Nanyi Bi. Research focus: human–computer interaction and human-centered AI.',
+      'Advisor: Nanyi Bi. Thesis on AI-generated self-interpretations and anticipated self-presentation.',
   },
   {
     title: 'Bachelor of Information Management',
@@ -96,7 +96,7 @@ export const publications: PublicationItem[] = [
     authors: ['Chien-Yin Wu', 'Nanyi Bi'],
     title:
       'Seeing Yourself Before Being Seen: Participant Articulation and Anticipated Self-Presentation with AI-Generated Self-Interpretations',
-    venue: 'Manuscript under review at CHI 2027',
+    venue: 'Manuscript under review',
   },
   {
     id: 'beyond-adaptation',
@@ -118,8 +118,8 @@ export const publications: PublicationItem[] = [
     authors: ['湯宇', '張韻柔', '邱馨論', '李思穎', '陶俊儒', '周杰穎', 'Chien-Yin Wu'],
     title: 'Oblivilight: Exploring Forgetting Mechanisms in Generative AI for Emotional Support',
     originalTitle: 'Oblivilight 憶光：探索情感支持生成式人工智慧的遺忘機制',
-    venue: 'TAICHI 2025 · Demo (OpenHCI 2025)',
-    role: 'Technical teaching assistant to the six-person student team',
+    venue: 'Interactive Demonstration, TAICHI 2025 (OpenHCI 2025)',
+    role: 'Co-author; mentored the six-person student team as technical teaching assistant and supported the Arduino implementation',
     links: [{ label: 'Program', href: 'https://taichi2025.taiwanchi.org/#/agenda' }],
   },
 ]
@@ -127,7 +127,8 @@ export const publications: PublicationItem[] = [
 export const researchExperience: Experience[] = [
   {
     title: 'Full-time Research Assistant',
-    organization: 'NSTC-funded research project · Supervisor: Nian-Shing Chen',
+    organization:
+      'National Taiwan Normal University · NSTC-funded project · Supervisor: Nian-Shing Chen',
     date: 'November 2026 – present',
     description:
       'Implementing a research system for a project funded by Taiwan’s National Science and Technology Council (NSTC).',
@@ -137,21 +138,21 @@ export const researchExperience: Experience[] = [
     organization: 'National Taiwan University · Supervisor: Nanyi Bi',
     date: 'September 2026 – January 2027 (expected)',
     description:
-      'Conducting interviews and analysis for a qualitative study of how people wait for AI agents to finish delegated tasks.',
+      'Held alongside the full-time position. Conducting interviews and analysis for a qualitative study of how people wait for AI agents to finish delegated tasks.',
   },
   {
-    title: 'Research Assistant',
+    title: 'Graduate Research Assistant',
     organization: 'National Taiwan University · Advisor: Nanyi Bi',
     date: 'Summer 2024 – August 2026',
     description:
-      'Conducted seven hour-long interviews on cross-cultural mingling. Designed and developed an LLM-supported self-presentation ideation prototype; the work was accepted at CHI EA 2025.',
+      'Master’s thesis: developed a three-stage generative AI pipeline (characteristic extraction, narrative generation, and photo-grounded image rendering) and ran a think-aloud lab study with 20 participants, analyzed thematically; the manuscript is under review. Before that, conducted seven hour-long interviews on cross-cultural mingling and built an LLM-supported self-presentation ideation prototype, published at CHI EA 2025.',
   },
   {
     title: 'Undergraduate Research Assistant',
     organization: 'National Taiwan University · Advisor: Lung-Pan Cheng',
     date: 'Summer 2022',
     description:
-      'Designed and conducted experiments with 15 participants for a changing-perspective projection system in virtual reality.',
+      'Designed and conducted experiments with 15 participants for a perspective-switching projection system in virtual reality.',
   },
   {
     title: 'Undergraduate Research Assistant',
@@ -167,8 +168,7 @@ export const workExperience: Experience[] = [
     title: 'InnoServe Intern',
     organization: 'Jubo Health',
     date: 'Spring 2026 – October 2026',
-    description:
-      'Digitized order workflows through API automation and consolidation of sales logic.',
+    description: 'Automated order processing via APIs and consolidated the sales rules.',
   },
   {
     title: 'Part-time Frontend Developer',
@@ -202,6 +202,13 @@ export const teachingExperience: Experience[] = [
       'Cross-Cultural Communication & Management (English-medium instruction); Entrepreneurship and What’s Next.',
   },
   {
+    title: 'Technical Teaching Assistant',
+    organization: 'OpenHCI 2025',
+    date: 'Summer 2025',
+    description:
+      'Guided a six-person student team from ideation to an Arduino prototype; the project was shown as a demo at TAICHI 2025.',
+  },
+  {
     title: 'Teaching Assistant',
     organization: 'National Taiwan University',
     date: 'Spring 2025',
@@ -225,7 +232,7 @@ export const leadershipExperience: Experience[] = [
   },
   {
     title: 'Lead Coordinator',
-    organization: 'Open HCI',
+    organization: 'OpenHCI',
     date: 'Spring – summer 2022',
     description: 'Organized a five-day human–computer interaction workshop for 105 participants.',
   },
@@ -233,8 +240,7 @@ export const leadershipExperience: Experience[] = [
     title: 'Web Developer Volunteer',
     organization: 'Teach for Taiwan',
     date: 'Spring – summer 2022',
-    description:
-      'Shared research on web technologies and development approaches with the team and created technical documentation.',
+    description: 'Researched web frameworks for the team and wrote the technical documentation.',
   },
 ]
 

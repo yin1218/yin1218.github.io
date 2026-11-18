@@ -52,8 +52,8 @@ export const timelineItems: TimelineItem[] = [
   },
   {
     lane: 'research',
-    title: 'Research Assistant, NSTC project',
-    org: 'Supervisor: Nian-Shing Chen',
+    title: 'Full-time Research Assistant, NSTC project',
+    org: 'National Taiwan Normal University · Nian-Shing Chen',
     start: '2026-11',
     end: 'present',
     detail: 'Implementing a research system for a project funded by Taiwan’s NSTC.',
@@ -71,7 +71,7 @@ export const timelineItems: TimelineItem[] = [
   {
     lane: 'publications',
     title: 'Seeing Yourself Before Being Seen',
-    org: 'Under review at CHI 2027',
+    org: 'Manuscript under review',
     start: '2026',
     detail:
       'Participant articulation and anticipated self-presentation with AI-generated self-interpretations.',
@@ -83,7 +83,7 @@ export const timelineItems: TimelineItem[] = [
     org: 'Jubo Health',
     start: '2026-02',
     end: '2026-10',
-    detail: 'Digitized order workflows through API automation and consolidated sales logic.',
+    detail: 'Automated order processing via APIs and consolidated the sales rules.',
   },
   // 2025
   {
@@ -99,7 +99,7 @@ export const timelineItems: TimelineItem[] = [
     title: 'Oblivilight 憶光',
     org: 'TAICHI 2025 · Demo',
     start: '2025',
-    detail: 'Forgetting mechanisms in generative AI for emotional support; seventh author.',
+    detail: 'Forgetting mechanisms in generative AI for emotional support; co-author.',
     href: '/publications/oblivilight',
   },
   {
@@ -171,7 +171,7 @@ export const timelineItems: TimelineItem[] = [
     org: 'Lung-Pan Cheng',
     start: '2022-07',
     end: '2022-08',
-    detail: 'Experiments with 15 participants for a VR changing-perspective projection system.',
+    detail: 'Experiments with 15 participants for a VR perspective-switching projection system.',
   },
   {
     lane: 'research',

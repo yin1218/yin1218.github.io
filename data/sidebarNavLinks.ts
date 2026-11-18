@@ -27,7 +27,7 @@ export const pageSections: Record<string, { id: string; title: string }[]> = {
   '/resume': [
     { id: 'education', title: 'Education' },
     { id: 'courses', title: 'Selected courses' },
-    { id: 'publications', title: 'Publications' },
+    { id: 'publications', title: 'Publications & demonstrations' },
     { id: 'research-experience', title: 'Research experience' },
     { id: 'work', title: 'Work experience' },
     { id: 'teaching', title: 'Teaching' },

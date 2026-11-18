@@ -73,7 +73,7 @@ export default function NamePronunciation({ audioSrc }: { audioSrc: string }) {
       </div>
       <div className="name-pronunciation-guide">
         <span>
-          <span className="name-pronunciation-label">KK (approx.)</span>{' '}
+          <span className="name-pronunciation-label">IPA (approx.)</span>{' '}
           <span className="name-pronunciation-phonetics">[wu tʃjɛn ɪŋ]</span>
         </span>
       </div>

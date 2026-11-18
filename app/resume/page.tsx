@@ -71,7 +71,7 @@ export default function Resume() {
         </div>
       </section>
       <section id="publications" className="academic-section">
-        <h2>Publications</h2>
+        <h2>Publications & demonstrations</h2>
         <PublicationList />
       </section>
       <section id="research-experience" className="academic-section">

@@ -22,7 +22,7 @@ export const publicationDetails: PublicationDetail[] = [
     summary:
       'How people articulate themselves, and anticipate presenting themselves to others, when they read AI-generated interpretations of who they are.',
     description:
-      'Seeing Yourself Before Being Seen by Chien-Yin Wu and Nanyi Bi: a master’s thesis study of AI-generated self-interpretations, under review at CHI 2027.',
+      'Seeing Yourself Before Being Seen by Chien-Yin Wu and Nanyi Bi: a master’s thesis study of AI-generated self-interpretations; manuscript under review.',
     steps: [
       {
         label: '01 · Build',
@@ -64,7 +64,7 @@ export const publicationDetails: PublicationDetail[] = [
         nav: 'Status',
         title: 'Status',
         paragraphs: [
-          'The manuscript is under review at CHI 2027. Detailed findings will be added here once the review is complete.',
+          'The manuscript is under review. Detailed findings will be added here once the review is complete.',
         ],
       },
     ],
@@ -77,7 +77,7 @@ export const publicationDetails: PublicationDetail[] = [
     ],
     roleNote: 'Carried out with my advisor, Nanyi Bi, at National Taiwan University.',
     citation:
-      'Chien-Yin Wu and Nanyi Bi. Seeing Yourself Before Being Seen: Participant Articulation and Anticipated Self-Presentation with AI-Generated Self-Interpretations. Manuscript under review at CHI 2027.',
+      'Chien-Yin Wu and Nanyi Bi. Seeing Yourself Before Being Seen: Participant Articulation and Anticipated Self-Presentation with AI-Generated Self-Interpretations. Manuscript under review.',
   },
   {
     id: 'beyond-adaptation',
@@ -156,8 +156,9 @@ export const publicationDetails: PublicationDetail[] = [
       },
     ],
     roles: ['Technical mentoring', 'Prototyping support'],
-    roleNote: 'Seventh author. I guided the six-person team as OpenHCI 2025 technical TA.',
+    roleNote:
+      'Co-author. I mentored the six-person team as OpenHCI 2025 technical TA and supported the Arduino implementation.',
     citation:
-      '湯宇, 張韻柔, 邱馨論, 李思穎, 陶俊儒, 周杰穎, and Chien-Yin Wu. 2025. Oblivilight 憶光：探索情感支持生成式人工智慧的遺忘機制 (Oblivilight: Exploring Forgetting Mechanisms in Generative AI for Emotional Support). TAICHI 2025, Demo.',
+      '湯宇, 張韻柔, 邱馨論, 李思穎, 陶俊儒, 周杰穎, and Chien-Yin Wu. 2025. Oblivilight 憶光：探索情感支持生成式人工智慧的遺忘機制 (Oblivilight: Exploring Forgetting Mechanisms in Generative AI for Emotional Support). Interactive Demonstration, TAICHI 2025 (OpenHCI 2025).',
   },
 ]

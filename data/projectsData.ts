@@ -12,7 +12,32 @@ export interface Project {
 
 // The original four projects and video URLs were recovered from
 // https://wpbag.vercel.app/projects. Contributions are supported by the supplied CVs.
+// The two 2025 projects follow "Selected Research and Design Projects" in the English CV
+// (Obsidian PhD/申請素材/英文履歷, 2026-11-18). The BrushaMood photo is from the course report.
 const projectsData: Project[] = [
+  {
+    id: 'brushamood',
+    title: 'BrushaMood',
+    roles: ['Physical computing', 'Prototyping'],
+    description:
+      'An interactive music device for indirect expressions of care within families. Choosing a mood while dispensing toothpaste plays music from playlists that family members curated, for the two minutes of brushing. A Social Design course project.',
+    contribution:
+      'Built the working prototype, in which mood buttons trigger playback, with Arduino, Raspberry Pi, and the Spotify API. Contributed to problem framing, user journey mapping, and prototype design.',
+    date: 'Spring 2025',
+    imgSrc: '/static/images/project/brushamood.webp',
+    featured: false,
+  },
+  {
+    id: 'columbarium-theatre',
+    title: 'Immersive theatre from the perspective of the deceased',
+    roles: ['Concept', 'Video production'],
+    description:
+      'A spatial storytelling piece by a three-person team in an interdisciplinary arts course. The audience sits in a space staged as a columbarium and watches prerecorded stories of visitors from the position of those being remembered.',
+    contribution:
+      'Contributed to the concept, narrative, script, and spatial arrangement. Edited and post-produced the video and supported filming.',
+    date: 'Spring 2025',
+    featured: false,
+  },
   {
     id: 'pathfinder',
     title: 'Pathfinder',

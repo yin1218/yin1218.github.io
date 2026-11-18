@@ -29,7 +29,13 @@ export default function ProjectList({
           role="group"
           aria-label="Filter projects by tag"
         >
-          <button type="button" aria-pressed={tag === null} onClick={() => setTag(null)}>
+          <button
+            type="button"
+            aria-pressed={tag === null}
+            data-analytics-event="project_filter"
+            data-analytics-resource="all"
+            onClick={() => setTag(null)}
+          >
             All
           </button>
           {tags.map((item) => (
@@ -37,6 +43,8 @@ export default function ProjectList({
               key={item}
               type="button"
               aria-pressed={tag === item}
+              data-analytics-event="project_filter"
+              data-analytics-resource={item}
               onClick={() => setTag(tag === item ? null : item)}
             >
               {item}
@@ -48,12 +56,12 @@ export default function ProjectList({
         <article
           id={project.id}
           aria-labelledby={`${project.id}-title`}
-          className={project.imgSrc ? 'project-entry' : 'project-entry project-entry-text'}
+          className="project-entry"
           key={`${tag}-${project.id}`}
         >
-          {project.imgSrc && (
+          {project.imgSrc && project.href && (
             <Link
-              href={project.href || '/projects'}
+              href={project.href}
               analyticsResource={project.id}
               aria-label={`View ${project.title}`}
             >
@@ -66,6 +74,21 @@ export default function ProjectList({
                 className="project-image"
               />
             </Link>
+          )}
+          {project.imgSrc && !project.href && (
+            <Image
+              src={project.imgSrc}
+              alt={project.title}
+              width={544}
+              height={306}
+              sizes="(max-width: 639px) 352px, 180px"
+              className="project-image"
+            />
+          )}
+          {!project.imgSrc && (
+            <div className="project-image project-placeholder" aria-hidden="true">
+              {project.title.charAt(0)}
+            </div>
           )}
           <div>
             <span className="research-number">

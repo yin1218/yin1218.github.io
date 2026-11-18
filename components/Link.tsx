@@ -20,9 +20,10 @@ function analyticsDetails(href: string) {
   if (/^https:\/\/(www\.)?(youtube\.com|youtu\.be)\//.test(href)) {
     return { event: 'demo_open', resource: 'project-demo' }
   }
-  if (href === '/publications/beyond-adaptation') {
-    return { event: 'research_open', resource: 'beyond-adaptation' }
+  if (href.startsWith('/publications/')) {
+    return { event: 'research_open', resource: href.split('/')[2] }
   }
+  if (href.startsWith('/blog/')) return { event: 'essay_open', resource: href.split('/')[2] }
 }
 
 const CustomLink = ({ href, analyticsResource, ...rest }: Props) => {

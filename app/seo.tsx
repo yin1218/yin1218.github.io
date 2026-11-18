@@ -17,7 +17,7 @@ export const pageSEO = {
     path: '/projects',
     title: 'Projects & Demos',
     description:
-      'Explore five projects by Chien-Yin Wu: Pathfinder, GOTCHA, Dormy, Swappy, and Habitra, with contributions and demos.',
+      'Projects by Chien-Yin Wu across education, community services, and everyday life, with contributions and demos.',
   },
   beyondAdaptation: {
     path: '/publications/beyond-adaptation',
@@ -29,7 +29,7 @@ export const pageSEO = {
     path: '/publications',
     title: 'Publications',
     description:
-      'Publications by Chien-Yin Wu (巫芊瑩): CHI EA 2025 Late-Breaking Work, a manuscript under review at CHI 2027, and a TAICHI 2025 demo.',
+      'Publications by Chien-Yin Wu (巫芊瑩): CHI EA 2025 Late-Breaking Work, a manuscript under review, and a TAICHI 2025 demo.',
   },
   resume: {
     path: '/resume',
@@ -41,7 +41,7 @@ export const pageSEO = {
     path: '/blog',
     title: 'Essays',
     description:
-      'Essays by Chien-Yin Wu (巫芊瑩) beyond research: on cafés, photography, and collecting sports.',
+      'Essays by Chien-Yin Wu (巫芊瑩) beyond research: on cafés, photography, and trying new sports.',
   },
   cafes: {
     path: '/blog/cafes-and-me',

@@ -12,18 +12,19 @@ const voices: { id: string; label: string; paragraphs: ReactNode[] }[] = [
     label: 'Researcher',
     paragraphs: [
       <>
-        I study how AI-generated suggestions shape the possibilities people see for themselves and
-        for their relationships with others. I build generative AI prototypes and use interviews to
-        learn how people respond to them.
+        I study how AI-generated suggestions shape how people see themselves and present themselves
+        to others. I build generative AI prototypes and use interviews to learn how people respond
+        to them. Next, I want to ask how such suggestions can leave people room to judge them and to
+        decline them.
       </>,
       <>
-        I received my master’s degree in Information Management from National Taiwan University in
-        August 2026, advised by Nanyi Bi. I am applying to PhD programs in human–computer
-        interaction for fall 2027.
+        I completed my master’s degree in Information Management at National Taiwan University in
+        August 2026 under the supervision of Nanyi Bi. I am applying to PhD programs in
+        human–computer interaction for fall 2027.
       </>,
       <>
-        Outside research, I enjoy visiting cafés, observing society, taking photographs, and trying
-        new sports.
+        Outside research, I enjoy visiting cafés, people-watching, taking photographs, and trying a
+        new sport whenever I can.
       </>,
     ],
   },
@@ -70,6 +71,13 @@ export default function HomeIntro() {
 
   return (
     <div className="home-intro">
+      <div key={voice.id} className="home-voice" aria-live="polite">
+        {voice.paragraphs.map((paragraph, index) => (
+          <p key={ids[index]} id={ids[index]}>
+            {paragraph}
+          </p>
+        ))}
+      </div>
       <div className="home-reading" role="group" aria-label="Reading as">
         <span className="home-reading-label">Reading as</span>
         {voices.map((item) => (
@@ -77,17 +85,12 @@ export default function HomeIntro() {
             key={item.id}
             type="button"
             aria-pressed={item.id === active}
+            data-analytics-event="voice_switch"
+            data-analytics-resource={item.id}
             onClick={() => setActive(item.id)}
           >
             {item.label}
           </button>
-        ))}
-      </div>
-      <div key={voice.id} className="home-voice" aria-live="polite">
-        {voice.paragraphs.map((paragraph, index) => (
-          <p key={ids[index]} id={ids[index]}>
-            {paragraph}
-          </p>
         ))}
       </div>
     </div>

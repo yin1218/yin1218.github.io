@@ -26,14 +26,14 @@ export const nowItems: NowItem[] = [
     label: 'Building',
     glyph: 'spinner',
     text: 'A research system for an NSTC-funded project',
-    detail: 'Research assistant with Nian-Shing Chen · since November 2026',
+    detail: 'Full-time research assistant with Nian-Shing Chen, NTNU · since November 2026',
   },
   {
     lane: 'publications',
     label: 'Under review',
     glyph: 'dots',
     text: 'Seeing Yourself Before Being Seen',
-    detail: 'Thesis paper, submitted to CHI 2027',
+    detail: 'Thesis paper, manuscript under review',
     href: '/publications/seeing-yourself',
   },
 ]

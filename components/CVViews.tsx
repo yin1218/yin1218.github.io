@@ -52,6 +52,8 @@ export default function CVViews({ header, children }: { header: ReactNode; child
             key={item.id}
             type="button"
             aria-pressed={view === item.id}
+            data-analytics-event="cv_view"
+            data-analytics-resource={item.id}
             onClick={() => choose(item.id)}
           >
             {item.label}

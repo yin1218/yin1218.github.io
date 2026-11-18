@@ -37,7 +37,7 @@ export default function SportsAndMe() {
       </p>
 
       <h2 id="tried">Tried so far ({triedSports.length})</h2>
-      <SportsList sports={triedSports} />
+      <SportsList sports={triedSports} limit={12} />
 
       <h2 id="next">Next on the list ({nextSports.length})</h2>
       <SportsList sports={nextSports} />

@@ -25,8 +25,7 @@ export default function PhotographyAndMe() {
       <p>
         The World Press Photo exhibition used to leave me shaken. This year it left me with an odd,
         uneasy feeling instead, and I could not name it until I read Wang Cheng-Hsiang’s{' '}
-        <cite>Ways of Looking On</cite>. It is a wonderful book, and I want to read it again when I
-        have time.
+        <cite>Ways of Looking On</cite>.
       </p>
       <p>
         The book points out that modernism treated “presenting the real” as its highest rule, yet
@@ -45,12 +44,12 @@ export default function PhotographyAndMe() {
       <h2 id="meaning">So what is it for?</h2>
       <p>Does photography convey the real? I do not think it does.</p>
       <p>
-        No medium can stand in for experiencing the world yourself, so photography now seems to have
-        no practical meaning for me.
+        No medium can stand in for experiencing the world yourself. So I stopped asking photography
+        to prove anything.
       </p>
       <p>
-        I did not choose photography. I started doing it without noticing. A beautiful accident:
-        that is its meaning, haha.
+        I did not choose photography. I started doing it without noticing. A beautiful accident: for
+        now, that is meaning enough.
       </p>
 
       <h2 id="photos">Where the photos are</h2>

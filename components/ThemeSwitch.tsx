@@ -1,6 +1,7 @@
 'use client'
 
 import { Fragment, useEffect, useState } from 'react'
+import { track } from './track'
 import { useAtmosphere } from './useAtmosphere'
 import {
   Menu,
@@ -86,6 +87,7 @@ const ThemeSwitch = () => {
   useEffect(() => setMounted(true), [])
 
   const choose = (value: string) => {
+    track('theme_set', { resource: value })
     if (value === 'morning' || value === 'night') light(value)
     else pickTheme(value)
   }
