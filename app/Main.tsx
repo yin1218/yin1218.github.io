@@ -23,7 +23,8 @@ export default function Home() {
             in August 2026, advised by Nanyi Bi.
           </p>
           <p id="observations">
-            Outside research, I enjoy visiting cafés, observing society, and taking photographs.
+            Outside research, I enjoy visiting cafés, observing society, taking photographs, and
+            trying new sports.
           </p>
           <div id="contact" className="profile-links">
             <Link href={`mailto:${siteMetadata.email}`}>Email</Link>

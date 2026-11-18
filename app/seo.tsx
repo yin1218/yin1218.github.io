@@ -40,8 +40,8 @@ export const pageSEO = {
   cafes: {
     path: '/blog/cafes-and-me',
     title: 'Cafés and me',
-    description: 'A reflection on my relationship with cafés. Coming soon.',
-    index: false,
+    description:
+      'A first-person essay by Chien-Yin Wu on going to cafés: atmosphere, place, civil inattention, and the ticket to talk.',
   },
   photography: {
     path: '/blog/photography-and-me',
