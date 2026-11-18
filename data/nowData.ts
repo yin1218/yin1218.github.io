@@ -32,8 +32,8 @@ export const nowItems: NowItem[] = [
     lane: 'publications',
     label: 'Under review',
     glyph: 'dots',
-    text: 'Seeing Yourself Before Being Seen',
+    text: 'AI-generated self-interpretations',
     detail: 'Thesis paper, manuscript under review',
-    href: '/publications/seeing-yourself',
+    href: '/publications/self-interpretations',
   },
 ]

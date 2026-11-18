@@ -90,13 +90,12 @@ export const selfName = 'Chien-Yin Wu'
 
 export const publications: PublicationItem[] = [
   {
-    id: 'seeing-yourself',
+    id: 'self-interpretations',
     type: 'Under review',
     year: '2026',
     authors: ['Chien-Yin Wu', 'Nanyi Bi'],
-    title:
-      'Seeing Yourself Before Being Seen: Participant Articulation and Anticipated Self-Presentation with AI-Generated Self-Interpretations',
-    venue: 'Manuscript under review',
+    title: 'A study of AI-generated self-interpretations and anticipated self-presentation',
+    venue: 'Manuscript under review (title withheld)',
   },
   {
     id: 'beyond-adaptation',

@@ -16,13 +16,13 @@ export interface PublicationDetail {
 
 export const publicationDetails: PublicationDetail[] = [
   {
-    id: 'seeing-yourself',
-    shortTitle: 'Seeing Yourself Before Being Seen',
+    id: 'self-interpretations',
+    shortTitle: 'AI-generated self-interpretations',
     eyebrow: 'Human-AI interaction · Self-presentation',
     summary:
       'How people articulate themselves, and anticipate presenting themselves to others, when they read AI-generated interpretations of who they are.',
     description:
-      'Seeing Yourself Before Being Seen by Chien-Yin Wu and Nanyi Bi: a master’s thesis study of AI-generated self-interpretations; manuscript under review.',
+      'A master’s thesis study of AI-generated self-interpretations by Chien-Yin Wu and Nanyi Bi; manuscript under review.',
     steps: [
       {
         label: '01 · Build',
@@ -77,7 +77,7 @@ export const publicationDetails: PublicationDetail[] = [
     ],
     roleNote: 'Carried out with my advisor, Nanyi Bi, at National Taiwan University.',
     citation:
-      'Chien-Yin Wu and Nanyi Bi. Seeing Yourself Before Being Seen: Participant Articulation and Anticipated Self-Presentation with AI-Generated Self-Interpretations. Manuscript under review.',
+      'Chien-Yin Wu and Nanyi Bi. A study of AI-generated self-interpretations and anticipated self-presentation. Manuscript under review (title withheld).',
   },
   {
     id: 'beyond-adaptation',

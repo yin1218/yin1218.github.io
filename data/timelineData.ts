@@ -70,12 +70,11 @@ export const timelineItems: TimelineItem[] = [
   },
   {
     lane: 'publications',
-    title: 'Seeing Yourself Before Being Seen',
+    title: 'AI-generated self-interpretations',
     org: 'Manuscript under review',
     start: '2026',
-    detail:
-      'Participant articulation and anticipated self-presentation with AI-generated self-interpretations.',
-    href: '/publications/seeing-yourself',
+    detail: 'Thesis study of how people read AI-generated interpretations of themselves.',
+    href: '/publications/self-interpretations',
   },
   {
     lane: 'work',
