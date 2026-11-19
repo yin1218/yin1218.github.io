@@ -1,0 +1,216 @@
+// Traditional Chinese (Taiwan) counterpart of data/timelineData.ts. Items keep the same order
+// and the same dates (`start`, `end`, `href`); only the words change, so the layout is identical.
+import type { LaneId, TimelineItem } from '../timelineData'
+
+export const lanes: { id: LaneId; title: string; short: string }[] = [
+  { id: 'education', title: '學歷', short: '學歷' },
+  { id: 'research', title: '研究', short: '研究' },
+  { id: 'publications', title: '著作', short: '著作' },
+  { id: 'work', title: '工作', short: '工作' },
+  { id: 'teaching', title: '教學與服務', short: '教學' },
+  { id: 'awards', title: '獎項', short: '獎項' },
+]
+
+export const yearSummaries: Record<number, string> = {
+  2026: '完成碩士論文，接著投入「等待 AI 代理人」的研究。',
+  2025: '首篇 CHI 論文發表、擔任助教，以及 OpenHCI 展示作品。',
+  2024: '赴 KTH 交換，接著進入研究所，在 Nanyi Bi 指導下做研究。',
+  2023: '在業界做前端開發，並開設數位素養工作坊。',
+  2022: '開始參與研究專案、前端實習，並擔任 OpenHCI 總召。',
+  2021: '服務設計專案與競賽。',
+}
+
+export const timelineItems: TimelineItem[] = [
+  // 2026
+  {
+    lane: 'education',
+    title: '資訊管理碩士',
+    org: '國立臺灣大學',
+    start: '2024-09',
+    end: '2026-08',
+    detail: '指導教授：Nanyi Bi。碩士論文主題：AI 生成的自我詮釋。',
+  },
+  {
+    lane: 'research',
+    title: '國科會計畫專任研究助理',
+    org: '國立臺灣師範大學 · Nian-Shing Chen',
+    start: '2026-11',
+    end: 'present',
+    detail: '負責國科會補助計畫的研究系統實作。',
+  },
+  {
+    lane: 'research',
+    title: '兼任研究助理',
+    org: '國立臺灣大學 · Nanyi Bi',
+    start: '2026-09',
+    end: '2027-01',
+    note: '預計至 2027 年 1 月',
+    detail: '質性研究，探討人們如何等待 AI 代理人完成交辦的任務：訪談、分析，以及反覆檢視逐字稿。',
+  },
+  {
+    lane: 'publications',
+    title: 'AI 生成的自我詮釋',
+    org: '稿件審查中',
+    start: '2026',
+    detail: '碩士論文研究：人們如何閱讀 AI 對自己的詮釋。',
+    href: '/publications/self-interpretations',
+  },
+  {
+    lane: 'work',
+    title: 'InnoServe 實習生',
+    org: 'Jubo Health',
+    start: '2026-02',
+    end: '2026-10',
+    detail: '透過 API 自動化訂單處理，並統整銷售規則。',
+  },
+  // 2025
+  {
+    lane: 'publications',
+    title: 'Beyond Adaptation',
+    org: 'CHI EA 2025 · Late-Breaking Work',
+    start: '2025-04',
+    detail: '一款 LLM 輔助的自我呈現發想工具，用於跨文化社交場合。',
+    href: '/publications/beyond-adaptation',
+  },
+  {
+    lane: 'publications',
+    title: 'Oblivilight 憶光',
+    org: 'TAICHI 2025 · 展示',
+    start: '2025',
+    detail: '情感支持生成式 AI 的遺忘機制；共同作者。',
+    href: '/publications/oblivilight',
+  },
+  {
+    lane: 'teaching',
+    title: '助教',
+    org: 'Big Data & Business Analytics',
+    start: '2025-02',
+    end: '2025-06',
+    detail: 'Python 實作課、回答學生問題、期末專題評分。',
+  },
+  {
+    lane: 'teaching',
+    title: 'OpenHCI 2025 技術助教',
+    org: 'OpenHCI',
+    start: '2025-07',
+    end: '2025-08',
+    detail: '帶領六人團隊從發想做到 Arduino 原型。',
+  },
+  {
+    lane: 'teaching',
+    title: '助教',
+    org: 'Cross-Cultural Communication · Entrepreneurship',
+    start: '2025-09',
+    end: '2026-01',
+  },
+  {
+    lane: 'awards',
+    title: 'Garmin 獎學金',
+    org: '新臺幣 10 萬元',
+    start: '2025',
+  },
+  // 2024
+  {
+    lane: 'education',
+    title: '資訊管理學士',
+    org: '國立臺灣大學',
+    start: '2020-09',
+    end: '2024-06',
+    detail: '輔系：哲學。',
+  },
+  {
+    lane: 'education',
+    title: '交換學生（電腦科學）',
+    org: '瑞典皇家理工學院（KTH）',
+    start: '2024-01',
+    end: '2024-06',
+  },
+  {
+    lane: 'research',
+    title: '碩士班研究助理',
+    org: '國立臺灣大學 · Nanyi Bi',
+    start: '2024-07',
+    end: '2026-08',
+    detail: '七場跨文化社交訪談，以及一個 LLM 輔助的原型。',
+  },
+  // 2023
+  {
+    lane: 'teaching',
+    title: '工作坊講師',
+    org: '台灣事實查核教育基金會',
+    start: '2023-02',
+    end: '2023-06',
+    detail: '為年長者開設三場數位素養與事實查核工作坊。',
+  },
+  // 2022
+  {
+    lane: 'research',
+    title: '大學部研究助理',
+    org: 'Lung-Pan Cheng',
+    start: '2022-07',
+    end: '2022-08',
+    detail: 'VR 視角切換投影系統的實驗，共 15 位參與者。',
+  },
+  {
+    lane: 'research',
+    title: '大學部研究助理',
+    org: 'Ling-Chieh Kung',
+    start: '2022-02',
+    end: '2022-08',
+    detail: '以 Lasso 與 Ridge 模型預測 Global Express 外送員抵達率。',
+  },
+  {
+    lane: 'work',
+    title: '前端工程師實習生',
+    org: 'LINE Taiwan',
+    start: '2022-07',
+    end: '2023-07',
+    detail: '以 Nuxt.js 開發 LINE TODAY 前端模組。',
+  },
+  {
+    lane: 'work',
+    title: '兼職前端工程師',
+    org: '均一教育平台',
+    start: '2022-09',
+    end: '2023-06',
+    detail: '供教師記錄學生非認知能力發展的工具。',
+  },
+  {
+    lane: 'teaching',
+    title: 'OpenHCI 總召',
+    org: 'OpenHCI',
+    start: '2022-02',
+    end: '2022-08',
+    detail: '為期五天、105 位參與者的人機互動工作坊。',
+  },
+  {
+    lane: 'teaching',
+    title: '技術助教',
+    org: 'User Interface Design',
+    start: '2022-09',
+    end: '2023-01',
+  },
+  // 2021
+  {
+    lane: 'work',
+    title: '學生顧問',
+    org: 'Smart Daily & beBit',
+    start: '2021-09',
+    end: '2022-06',
+    detail: '12 場使用者訪談，以及與公司同仁一起進行的解決方案工作坊。',
+  },
+  { lane: 'awards', title: 'InnoServe Awards', org: 'IP 組第二名', start: '2021' },
+  {
+    lane: 'awards',
+    title: 'QS-Wharton Reimagine Education',
+    org: '入圍決選',
+    start: '2021',
+  },
+  {
+    lane: 'awards',
+    title: 'APP 行動應用創新競賽',
+    org: '佳作',
+    start: '2021',
+  },
+  { lane: 'awards', title: 'Trans Action Award', org: 'HTC 獎', start: '2021' },
+]

@@ -3,16 +3,19 @@
 import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import { useState } from 'react'
 import SidebarNavigation from './SidebarNavigation'
+import { useLocale } from './useLocale'
+import { dictionary } from '@/data/dictionary'
 
 export default function MobileNav() {
   const [open, setOpen] = useState(false)
+  const t = dictionary[useLocale()]
   const close = () => setOpen(false)
 
   return (
     <>
       <button
         type="button"
-        aria-label="Open navigation"
+        aria-label={t.openNavigation}
         aria-expanded={open}
         onClick={() => setOpen(true)}
         className="sidebar-menu-button"
@@ -33,11 +36,11 @@ export default function MobileNav() {
         <div className="sidebar-backdrop" aria-hidden="true" />
         <DialogPanel className="mobile-sidebar-panel">
           <div className="mobile-sidebar-heading">
-            <DialogTitle className="academic-wordmark">Navigation</DialogTitle>
+            <DialogTitle className="academic-wordmark">{t.navigation}</DialogTitle>
             <button
               type="button"
               onClick={close}
-              aria-label="Close navigation"
+              aria-label={t.closeNavigation}
               className="sidebar-menu-button"
             >
               <svg

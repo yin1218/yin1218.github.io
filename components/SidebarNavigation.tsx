@@ -3,10 +3,18 @@
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import Link from './Link'
-import { pageSections, siteLinks } from '@/data/sidebarNavLinks'
+import * as enLinks from '@/data/sidebarNavLinks'
+import * as zhLinks from '@/data/zh/sidebarNavLinks'
+import { stripLocale } from '@/data/i18n'
+import { dictionary } from '@/data/dictionary'
+import { useLocale } from './useLocale'
 
 export default function SidebarNavigation({ onNavigate }: { onNavigate?: () => void }) {
-  const pathname = usePathname()
+  const locale = useLocale()
+  const t = dictionary[locale]
+  const { pageSections, siteLinks } = locale === 'zh' ? zhLinks : enLinks
+  // Section lookups and active-link checks use the un-prefixed path.
+  const pathname = stripLocale(usePathname() || '/')
   const sections = pageSections[pathname]
   const [activeSection, setActiveSection] = useState('')
 
@@ -47,7 +55,7 @@ export default function SidebarNavigation({ onNavigate }: { onNavigate?: () => v
 
   return (
     <>
-      <nav aria-label="Main navigation" className="sidebar-pages">
+      <nav aria-label={t.mainNavigation} className="sidebar-pages">
         {siteLinks.map((link, index) => (
           <Link
             key={link.href}
@@ -67,8 +75,8 @@ export default function SidebarNavigation({ onNavigate }: { onNavigate?: () => v
         ))}
       </nav>
       {sections && (
-        <nav aria-label="On this page" className="sidebar-sections">
-          <p className="eyebrow">On this page</p>
+        <nav aria-label={t.onThisPage} className="sidebar-sections">
+          <p className="eyebrow">{t.onThisPage}</p>
           {sections.map((section) => (
             <Link
               key={section.id}

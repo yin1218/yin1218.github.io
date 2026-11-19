@@ -3,6 +3,8 @@
 import { Fragment, useEffect, useState } from 'react'
 import { track } from './track'
 import { useAtmosphere } from './useAtmosphere'
+import { useLocale } from './useLocale'
+import { dictionary } from '@/data/dictionary'
 import {
   Menu,
   MenuButton,
@@ -71,16 +73,16 @@ const Cup = () => (
 )
 const Blank = () => <svg className="h-6 w-6" />
 
-const options = [
-  { value: 'light', label: 'Light', icon: <Sun /> },
-  { value: 'dark', label: 'Dark', icon: <Moon /> },
-  { value: 'system', label: 'System', icon: <Monitor /> },
-  { value: 'morning', label: 'Morning café', icon: <Cup /> },
-  { value: 'night', label: 'Night café', icon: <Cup /> },
-]
-
 const ThemeSwitch = () => {
   const [mounted, setMounted] = useState(false)
+  const t = dictionary[useLocale()].theme
+  const options = [
+    { value: 'light', label: t.light, icon: <Sun /> },
+    { value: 'dark', label: t.dark, icon: <Moon /> },
+    { value: 'system', label: t.system, icon: <Monitor /> },
+    { value: 'morning', label: t.morning, icon: <Cup /> },
+    { value: 'night', label: t.night, icon: <Cup /> },
+  ]
   const { atmosphere, theme, resolvedTheme, light, pickTheme } = useAtmosphere()
 
   // When mounted on client, now we can show the UI
@@ -96,7 +98,7 @@ const ThemeSwitch = () => {
     <div className="flex items-center">
       <Menu as="div" className="relative inline-block text-left">
         <div className="hover:text-primary-500 dark:hover:text-primary-400 flex items-center justify-center">
-          <MenuButton aria-label="Theme and atmosphere">
+          <MenuButton aria-label={t.label}>
             {!mounted ? (
               <Blank />
             ) : atmosphere ? (

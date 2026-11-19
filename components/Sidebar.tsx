@@ -1,19 +1,26 @@
 import Link from './Link'
 import ThemeSwitch from './ThemeSwitch'
 import SidebarNavigation from './SidebarNavigation'
+import LanguageSwitch from './LanguageSwitch'
 import siteMetadata from '@/data/siteMetadata'
+import { Locale } from '@/data/i18n'
+import { dictionary } from '@/data/dictionary'
 
-export default function Sidebar() {
+export default function Sidebar({ locale }: { locale: Locale }) {
+  const t = dictionary[locale]
   return (
-    <aside className="site-sidebar" aria-label="Site sidebar">
+    <aside className="site-sidebar" aria-label={t.sidebarLabel}>
       <div className="sidebar-identity">
         <div className="sidebar-brand-row">
           <Link className="academic-wordmark" href="/">
-            {siteMetadata.author}
+            {locale === 'zh' ? siteMetadata.nativeName : siteMetadata.author}
           </Link>
-          <ThemeSwitch />
+          <div className="sidebar-tools">
+            <LanguageSwitch />
+            <ThemeSwitch />
+          </div>
         </div>
-        <p>Human–computer interaction research</p>
+        <p>{t.tagline}</p>
       </div>
       <SidebarNavigation />
     </aside>

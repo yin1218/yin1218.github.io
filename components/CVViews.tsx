@@ -2,17 +2,19 @@
 
 import { useEffect, useState, type ReactNode } from 'react'
 import CVTimeline from '@/components/CVTimeline'
+import { dictionary } from '@/data/dictionary'
+import { useLocale } from './useLocale'
 
 type View = 'list' | 'timeline'
-
-const views: { id: View; label: string }[] = [
-  { id: 'list', label: 'List' },
-  { id: 'timeline', label: 'Timeline' },
-]
 
 // The CV has two views of the same record: the written list and the month-by-month
 // timeline. The address keeps the choice (#timeline), so the timeline can be linked to.
 export default function CVViews({ header, children }: { header: ReactNode; children: ReactNode }) {
+  const t = dictionary[useLocale()].cvViews
+  const views: { id: View; label: string }[] = [
+    { id: 'list', label: t.list },
+    { id: 'timeline', label: t.timeline },
+  ]
   const [view, setView] = useState<View>('list')
 
   useEffect(() => {
@@ -46,7 +48,7 @@ export default function CVViews({ header, children }: { header: ReactNode; child
   return (
     <div className={view === 'timeline' ? 'academic-document cvt-page' : 'academic-document'}>
       {header}
-      <div className="cv-views" role="group" aria-label="CV view">
+      <div className="cv-views" role="group" aria-label={t.label}>
         {views.map((item) => (
           <button
             key={item.id}

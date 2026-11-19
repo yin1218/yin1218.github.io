@@ -3,20 +3,21 @@
 import { useRef, useState } from 'react'
 import Image from '@/components/Image'
 import Link from '@/components/Link'
-import { homePhotos, photoAccount } from '@/data/homePhotos'
+import { photoAccount } from '@/data/homePhotos'
+import { getHomePhotos } from '@/data/localized'
+import { dictionary } from '@/data/dictionary'
+import { useLocale } from './useLocale'
 
-// Only photographs that exist are shown; entries still waiting for a file are skipped.
-const shots = homePhotos.filter((photo) => photo.src)
-
-const portrait = (
+const portraitImage = (alt: string) => (
   <Image
     src="/static/images/chien-yin-wu.webp"
-    alt="Portrait of Chien-Yin Wu"
+    alt={alt}
     width={180}
     height={180}
     sizes="(max-width: 767px) 112px, 160px"
     className="home-portrait"
     priority
+    fetchPriority="high"
   />
 )
 
@@ -24,6 +25,11 @@ const portrait = (
 // photograph. Frame 0 is the portrait itself. Until there are photographs to show it
 // is a plain portrait.
 export default function ViewfinderPortrait() {
+  const locale = useLocale()
+  const t = dictionary[locale].portrait
+  // Only photographs that exist are shown; entries still waiting for a file are skipped.
+  const shots = getHomePhotos(locale).filter((photo) => photo.src)
+  const portrait = portraitImage(t.alt)
   const [frame, setFrame] = useState(0)
   const [firing, setFiring] = useState(false)
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
@@ -51,7 +57,7 @@ export default function ViewfinderPortrait() {
         type="button"
         className={firing ? 'home-portrait-frame is-firing' : 'home-portrait-frame'}
         onClick={shoot}
-        aria-label="Press the shutter to see the next photograph"
+        aria-label={t.shutter}
       >
         {portrait}
         {photo &&
@@ -79,7 +85,7 @@ export default function ViewfinderPortrait() {
             {photo.caption} · <Link href={photoAccount.href}>{photoAccount.label}</Link>
           </>
         ) : (
-          <Link href="/blog/photography-and-me">Why I photograph</Link>
+          <Link href="/blog/photography-and-me">{t.why}</Link>
         )}
       </p>
     </div>

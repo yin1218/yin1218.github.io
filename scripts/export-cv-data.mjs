@@ -9,7 +9,14 @@ const result = buildSync({
       import * as academic from './data/academicData'
       import projects from './data/projectsData'
       import profile from './data/siteMetadata'
-      export { academic, projects, profile }
+      import * as zhAcademic from './data/zh/academicData'
+      import { publications as zhPublications } from './data/zh/publications'
+      import zhProjects from './data/zh/projectsData'
+      const zh = {
+        academic: { ...zhAcademic, publications: zhPublications, selfName: academic.selfName },
+        projects: zhProjects,
+      }
+      export { academic, projects, profile, zh }
     `,
     resolveDir: root,
     sourcefile: 'cv-data.ts',

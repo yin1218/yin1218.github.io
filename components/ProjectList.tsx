@@ -4,10 +4,10 @@ import { useState } from 'react'
 import Image from '@/components/Image'
 import Link from '@/components/Link'
 import RolePills from '@/components/RolePills'
-import projectsData from '@/data/projectsData'
-
-// Every tag used by at least one project, in order of first appearance.
-const tags = [...new Set(projectsData.flatMap((project) => project.roles ?? []))]
+import { getProjects } from '@/data/localized'
+import { roleTagMap } from '@/data/zh/projectsData'
+import { dictionary } from '@/data/dictionary'
+import { useLocale } from './useLocale'
 
 export default function ProjectList({
   featuredOnly = false,
@@ -18,17 +18,25 @@ export default function ProjectList({
   detailed?: boolean
   filterable?: boolean
 }) {
-  const [tag, setTag] = useState<string | null>(null)
+  const locale = useLocale()
+  const t = dictionary[locale].projects
+  const projectsData = getProjects(locale)
+  // Every tag used by at least one project, in order of first appearance.
+  const tags = [...new Set(projectsData.flatMap((project) => project.roles ?? []))]
+  // Analytics always report the English tag, whatever language the page is in.
+  const tagResource = (value: string) => (locale === 'zh' ? (roleTagMap[value] ?? value) : value)
+  const [tag, setTagState] = useState<string | null>(null)
+  const [filtered, setFiltered] = useState(false)
+  const setTag = (value: string | null) => {
+    setFiltered(true)
+    setTagState(value)
+  }
   const all = featuredOnly ? projectsData.filter((project) => project.featured) : projectsData
   const projects = tag ? all.filter((project) => project.roles?.includes(tag)) : all
   return (
-    <div className="project-list">
+    <div className={filtered ? 'project-list is-filtered' : 'project-list'}>
       {filterable && (
-        <div
-          className="home-reading project-filter"
-          role="group"
-          aria-label="Filter projects by tag"
-        >
+        <div className="home-reading project-filter" role="group" aria-label={t.filter}>
           <button
             type="button"
             aria-pressed={tag === null}
@@ -36,7 +44,7 @@ export default function ProjectList({
             data-analytics-resource="all"
             onClick={() => setTag(null)}
           >
-            All
+            {t.all}
           </button>
           {tags.map((item) => (
             <button
@@ -44,7 +52,7 @@ export default function ProjectList({
               type="button"
               aria-pressed={tag === item}
               data-analytics-event="project_filter"
-              data-analytics-resource={item}
+              data-analytics-resource={tagResource(item)}
               onClick={() => setTag(tag === item ? null : item)}
             >
               {item}
@@ -63,7 +71,7 @@ export default function ProjectList({
             <Link
               href={project.href}
               analyticsResource={project.id}
-              aria-label={`View ${project.title}`}
+              aria-label={t.view(project.title)}
             >
               <Image
                 src={project.imgSrc}
@@ -72,6 +80,8 @@ export default function ProjectList({
                 height={306}
                 sizes="(max-width: 639px) 352px, 180px"
                 className="project-image"
+                priority={index === 0}
+                fetchPriority={index === 0 ? 'high' : undefined}
               />
             </Link>
           )}
@@ -83,6 +93,8 @@ export default function ProjectList({
               height={306}
               sizes="(max-width: 639px) 352px, 180px"
               className="project-image"
+              priority={index === 0}
+              fetchPriority={index === 0 ? 'high' : undefined}
             />
           )}
           {!project.imgSrc && (
@@ -92,7 +104,7 @@ export default function ProjectList({
           )}
           <div>
             <span className="research-number">
-              Project / {String(index + 1).padStart(2, '0')} · {project.date}
+              {t.project} / {String(index + 1).padStart(2, '0')} · {project.date}
             </span>
             <h2 id={`${project.id}-title`}>
               {project.href ? (
@@ -103,7 +115,9 @@ export default function ProjectList({
                 project.title
               )}
             </h2>
-            {project.roles && <RolePills roles={project.roles} />}
+            {project.roles && (
+              <RolePills roles={project.roles} label={dictionary[locale].publications.myRole} />
+            )}
             <p>{project.description}</p>
             {detailed && project.contribution && (
               <p className="project-contribution">{project.contribution}</p>
@@ -113,9 +127,9 @@ export default function ProjectList({
                 className="project-link"
                 href={project.href}
                 analyticsResource={project.id}
-                aria-label={`Learn more about ${project.title}`}
+                aria-label={`${t.watchDemo}: ${project.title}`}
               >
-                Watch demo <span aria-hidden="true">↗</span>
+                {t.watchDemo} <span aria-hidden="true">↗</span>
               </Link>
             )}
           </div>

@@ -2,25 +2,27 @@
 
 import { useState } from 'react'
 import Link from '@/components/Link'
-import { homePhotos, photoAccount } from '@/data/homePhotos'
-import { nextSports, triedSports } from '@/data/sportsData'
+import { photoAccount } from '@/data/homePhotos'
+import { getHomePhotos, getSports } from '@/data/localized'
+import { dictionary } from '@/data/dictionary'
 import { useAtmosphere, type Atmosphere } from './useAtmosphere'
-
-const lights: { id: Atmosphere; label: string; note: string }[] = [
-  { id: 'morning', label: 'Morning', note: 'Morning light through the window. The page is lit.' },
-  { id: 'night', label: 'Night', note: 'One yellow lamp tunes the whole corner.' },
-]
-
-// Only photographs that exist are shown; entries still waiting for a file are skipped.
-const shots = homePhotos.filter((photo) => photo.src)
-
-const sports = [
-  ...triedSports.map((sport) => ({ name: sport.name, tried: true })),
-  ...nextSports.map((sport) => ({ name: sport.name, tried: false })),
-]
+import { useLocale } from './useLocale'
 
 // Three interests, each with something small to try before reading the essay.
 export default function BeyondResearch() {
+  const locale = useLocale()
+  const t = dictionary[locale].beyond
+  const lights: { id: Atmosphere; label: string; note: string }[] = [
+    { id: 'morning', label: t.morning, note: t.morningNote },
+    { id: 'night', label: t.night, note: t.nightNote },
+  ]
+  // Only photographs that exist are shown; entries still waiting for a file are skipped.
+  const shots = getHomePhotos(locale).filter((photo) => photo.src)
+  const { triedSports, nextSports } = getSports(locale)
+  const sports = [
+    ...triedSports.map((sport) => ({ name: sport.name, tried: true })),
+    ...nextSports.map((sport) => ({ name: sport.name, tried: false })),
+  ]
   const { atmosphere, light, clear } = useAtmosphere()
   const [frame, setFrame] = useState<number | null>(null)
   const [sport, setSport] = useState<number | null>(null)
@@ -31,9 +33,9 @@ export default function BeyondResearch() {
   return (
     <div className="beyond-cards">
       <section className="beyond-card" aria-labelledby="beyond-cafes">
-        <p className="beyond-eyebrow">Atmosphere</p>
-        <h3 id="beyond-cafes">Café</h3>
-        <div className="home-reading" role="group" aria-label="Light the page like a café">
+        <p className="beyond-eyebrow">{t.atmosphere}</p>
+        <h3 id="beyond-cafes">{t.cafe}</h3>
+        <div className="home-reading" role="group" aria-label={t.lightGroup}>
           {lights.map((item) => (
             <button
               key={item.id}
@@ -48,16 +50,16 @@ export default function BeyondResearch() {
           ))}
         </div>
         <p className="beyond-readout" aria-live="polite">
-          {litNote ?? 'I go for the atmosphere.'}
+          {litNote ?? t.defaultCafeNote}
         </p>
         <p className="beyond-more">
-          <Link href="/blog/cafes-and-me">Cafés and me</Link>
+          <Link href="/blog/cafes-and-me">{t.cafesEssay}</Link>
         </p>
       </section>
 
       <section className="beyond-card" aria-labelledby="beyond-photos">
-        <p className="beyond-eyebrow">Looking</p>
-        <h3 id="beyond-photos">Photography</h3>
+        <p className="beyond-eyebrow">{t.looking}</p>
+        <h3 id="beyond-photos">{t.photography}</h3>
         {shots.length > 0 && (
           <div className="beyond-frames" onMouseLeave={() => setFrame(null)}>
             {shots.map((item, index) => (
@@ -81,19 +83,19 @@ export default function BeyondResearch() {
             photo.caption
           ) : (
             <>
-              I photograph to keep a record. The photographs are on{' '}
-              <Link href={photoAccount.href}>{photoAccount.label}</Link>.
+              {t.photoNote} <Link href={photoAccount.href}>{photoAccount.label}</Link>
+              {t.photoNoteEnd}
             </>
           )}
         </p>
         <p className="beyond-more">
-          <Link href="/blog/photography-and-me">Photography and me</Link>
+          <Link href="/blog/photography-and-me">{t.photographyEssay}</Link>
         </p>
       </section>
 
       <section className="beyond-card" aria-labelledby="beyond-sports">
-        <p className="beyond-eyebrow">Collecting</p>
-        <h3 id="beyond-sports">Sport</h3>
+        <p className="beyond-eyebrow">{t.collecting}</p>
+        <h3 id="beyond-sports">{t.sport}</h3>
         <ul className="beyond-dots" onMouseLeave={() => setSport(null)}>
           {sports.map((item, index) => (
             <li key={item.name}>
@@ -104,7 +106,7 @@ export default function BeyondResearch() {
                   (item.tried ? ' is-tried' : '') +
                   (sport === index ? ' is-active' : '')
                 }
-                aria-label={`${item.name}, ${item.tried ? 'tried' : 'not tried yet'}`}
+                aria-label={t.sportLabel(item.name, item.tried)}
                 onMouseEnter={() => setSport(index)}
                 onFocus={() => setSport(index)}
                 onClick={() => setSport(index)}
@@ -116,14 +118,14 @@ export default function BeyondResearch() {
           {current ? (
             <>
               <strong>{current.name}</strong>
-              {current.tried ? ' · tried' : ' · next on the list'}
+              {current.tried ? t.sportTried : t.sportNext}
             </>
           ) : (
-            `${triedSports.length} of ${sports.length} tried so far.`
+            t.sportSummary(triedSports.length, sports.length)
           )}
         </p>
         <p className="beyond-more">
-          <Link href="/blog/sports-and-me">Sports and me</Link>
+          <Link href="/blog/sports-and-me">{t.sportsEssay}</Link>
         </p>
       </section>
     </div>

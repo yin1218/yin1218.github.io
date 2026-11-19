@@ -1,8 +1,12 @@
 'use client'
 
 import { useRef, useState } from 'react'
+import { dictionary } from '@/data/dictionary'
+import { useLocale } from './useLocale'
 
 export default function NamePronunciation({ audioSrc }: { audioSrc: string }) {
+  const locale = useLocale()
+  const t = dictionary[locale].pronunciation
   // Replace public/static/audio/chien-yin-wu.mp3 with a personal recording.
   const audioRef = useRef<HTMLAudioElement>(null)
   const [isPlaying, setIsPlaying] = useState(false)
@@ -25,27 +29,30 @@ export default function NamePronunciation({ audioSrc }: { audioSrc: string }) {
     } catch (error) {
       if (error instanceof DOMException && error.name === 'AbortError') return
       setIsPlaying(false)
-      setError('Audio is unavailable. Please try again.')
+      setError(t.unavailable)
     }
   }
 
   return (
     <div className="name-pronunciation">
       <div className="name-pronunciation-heading">
-        <span className="name-pronunciation-chinese" lang="zh-Hant">
-          巫芊瑩
-        </span>
+        {/* The heading above already shows the name in the page's language; show the other one. */}
+        {locale === 'zh' ? (
+          <span className="name-pronunciation-chinese" lang="en">
+            Chien-Yin Wu
+          </span>
+        ) : (
+          <span className="name-pronunciation-chinese" lang="zh-Hant">
+            巫芊瑩
+          </span>
+        )}
         <button
           type="button"
           className="name-pronunciation-button"
           data-analytics-event={isPlaying ? 'name_pronunciation_pause' : 'name_pronunciation_play'}
           data-analytics-resource="name"
           onClick={togglePlayback}
-          aria-label={
-            isPlaying
-              ? 'Pause name pronunciation'
-              : 'Listen to the pronunciation of 巫芊瑩 in Mandarin'
-          }
+          aria-label={isPlaying ? t.pauseLabel : t.listenLabel}
           aria-pressed={isPlaying}
         >
           <svg
@@ -68,12 +75,12 @@ export default function NamePronunciation({ audioSrc }: { audioSrc: string }) {
               </>
             )}
           </svg>
-          <span>{isPlaying ? 'Pause' : 'Listen'}</span>
+          <span>{isPlaying ? t.pause : t.listen}</span>
         </button>
       </div>
       <div className="name-pronunciation-guide">
         <span>
-          <span className="name-pronunciation-label">IPA (approx.)</span>{' '}
+          <span className="name-pronunciation-label">{t.ipa}</span>{' '}
           <span className="name-pronunciation-phonetics">[wu tʃjɛn ɪŋ]</span>
         </span>
       </div>
@@ -86,7 +93,7 @@ export default function NamePronunciation({ audioSrc }: { audioSrc: string }) {
         onEnded={() => setIsPlaying(false)}
         onError={() => {
           setIsPlaying(false)
-          setError('Audio is unavailable. Please try again.')
+          setError(t.unavailable)
         }}
       >
         <track

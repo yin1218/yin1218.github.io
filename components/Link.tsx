@@ -1,7 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
+'use client'
+
 import Link from 'next/link'
 import type { LinkProps } from 'next/link'
 import { AnchorHTMLAttributes } from 'react'
+import { localizePath } from '@/data/i18n'
+import { useLocale } from './useLocale'
 
 type Props = LinkProps &
   AnchorHTMLAttributes<HTMLAnchorElement> & {
@@ -10,7 +14,8 @@ type Props = LinkProps &
 
 function analyticsDetails(href: string) {
   if (href.startsWith('mailto:')) return { event: 'contact_click', resource: 'email' }
-  if (href.endsWith('/chien-yin-wu-cv.pdf')) return { event: 'cv_download', resource: 'cv' }
+  // Both languages' PDFs count as the same resource.
+  if (/\/chien-yin-wu-cv(-zh)?\.pdf$/.test(href)) return { event: 'cv_download', resource: 'cv' }
   if (href.endsWith('/beyond-adaptation.bib')) {
     return { event: 'citation_download', resource: 'beyond-adaptation' }
   }
@@ -27,8 +32,10 @@ function analyticsDetails(href: string) {
 }
 
 const CustomLink = ({ href, analyticsResource, ...rest }: Props) => {
+  const locale = useLocale()
   const isInternalLink = href && href.startsWith('/')
   const isAnchorLink = href && href.startsWith('#')
+  // Analytics use the un-prefixed href so event names do not change with the language.
   const details = analyticsDetails(href)
   const analytics = details
     ? {
@@ -42,7 +49,13 @@ const CustomLink = ({ href, analyticsResource, ...rest }: Props) => {
   }
 
   if (isInternalLink) {
-    return <Link className="break-words" href={href} {...analytics} {...rest} />
+    // Internal pages stay in the current language; files under /static are shared.
+    // Files are plain anchors: next/link would prefetch them as routes and log a 404.
+    if (href.includes('/static/')) {
+      return <a className="break-words" href={href} {...analytics} {...rest} />
+    }
+    const target = localizePath(href, locale)
+    return <Link className="break-words" href={target} {...analytics} {...rest} />
   }
 
   if (isAnchorLink) {

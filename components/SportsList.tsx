@@ -2,10 +2,13 @@
 
 import { useEffect, useRef, useState } from 'react'
 import type { Sport } from '@/data/sportsData'
+import { dictionary } from '@/data/dictionary'
+import { useLocale } from './useLocale'
 
 // Chips for a list of sports. A sport with photos becomes a button that opens them
 // in a dialog; the rest stay plain text.
 export default function SportsList({ sports, limit }: { sports: Sport[]; limit?: number }) {
+  const t = dictionary[useLocale()].sports
   const [open, setOpen] = useState<Sport | null>(null)
   const [expanded, setExpanded] = useState(false)
   const shown = limit && !expanded ? sports.slice(0, limit) : sports
@@ -28,7 +31,7 @@ export default function SportsList({ sports, limit }: { sports: Sport[]; limit?:
               <button type="button" onClick={() => setOpen(sport)} aria-haspopup="dialog">
                 {sport.name}
                 <span className="sports-photo-count" aria-hidden="true">
-                  {sport.photos.length > 1 ? `${sport.photos.length} photos` : 'photo'}
+                  {t.photos(sport.photos.length)}
                 </span>
               </button>
             ) : (
@@ -38,11 +41,7 @@ export default function SportsList({ sports, limit }: { sports: Sport[]; limit?:
         ))}
         {hidden > 0 && (
           <li className="has-photos">
-            <button
-              type="button"
-              aria-label={`Show ${hidden} more sports`}
-              onClick={() => setExpanded(true)}
-            >
+            <button type="button" aria-label={t.showMore(hidden)} onClick={() => setExpanded(true)}>
               +{hidden}
             </button>
           </li>
@@ -52,7 +51,7 @@ export default function SportsList({ sports, limit }: { sports: Sport[]; limit?:
       <dialog
         ref={dialogRef}
         className="sports-dialog"
-        aria-label={open ? `${open.name} photos` : undefined}
+        aria-label={open ? t.dialogLabel(open.name) : undefined}
         onClose={() => setOpen(null)}
         onClick={(event) => {
           if (event.target === dialogRef.current) setOpen(null)
@@ -63,7 +62,7 @@ export default function SportsList({ sports, limit }: { sports: Sport[]; limit?:
             <div className="sports-dialog-head">
               <h2>{open.name}</h2>
               <button type="button" onClick={() => setOpen(null)}>
-                Close
+                {t.close}
               </button>
             </div>
             {open.photos?.map((photo) => (

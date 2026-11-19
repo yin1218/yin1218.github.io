@@ -2,7 +2,10 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from '@/components/Link'
-import { nowItems, nowUpdated, type NowItem } from '@/data/nowData'
+import type { NowItem } from '@/data/nowData'
+import { getNow } from '@/data/localized'
+import { dictionary } from '@/data/dictionary'
+import { useLocale } from './useLocale'
 
 // Small animated mark after each label: a caret while studying, a spinner while
 // building, and dots while waiting for reviewers.
@@ -20,6 +23,9 @@ function Glyph({ kind }: { kind: NowItem['glyph'] }) {
 }
 
 export default function NowBlock() {
+  const locale = useLocale()
+  const t = dictionary[locale].home
+  const { nowItems, nowUpdated } = getNow(locale)
   // 'idle' on the server (everything visible), 'ready' once hydrated (hidden until it
   // scrolls in), 'in' after it enters the viewport.
   const [phase, setPhase] = useState<'idle' | 'ready' | 'in'>('idle')
@@ -52,10 +58,10 @@ export default function NowBlock() {
       <div className="home-now-head">
         <h2 id="now-title">
           <span className="home-now-pulse" aria-hidden="true" />
-          Now
+          {t.nowTitle}
         </h2>
         <p className="home-now-updated">
-          Updated <time dateTime={nowUpdated.iso}>{nowUpdated.label}</time>
+          {t.updated} <time dateTime={nowUpdated.iso}>{nowUpdated.label}</time>
         </p>
       </div>
       <ul className="home-now-list">
@@ -77,7 +83,7 @@ export default function NowBlock() {
         ))}
       </ul>
       <Link className="home-detail-link" href="/resume#timeline">
-        How I got here: timeline
+        {t.timelineLink}
       </Link>
     </section>
   )

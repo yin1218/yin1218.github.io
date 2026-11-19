@@ -2,17 +2,11 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from '@/components/Link'
-import {
-  lanes,
-  timelineItems,
-  timelineNow,
-  timelineYears,
-  yearSummaries,
-  type LaneId,
-  type TimelineItem,
-} from '@/data/timelineData'
-
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+import { timelineNow, timelineYears, type LaneId, type TimelineItem } from '@/data/timelineData'
+import { getTimeline } from '@/data/localized'
+import { dictionary } from '@/data/dictionary'
+import type { Locale } from '@/data/i18n'
+import { useLocale } from './useLocale'
 
 // Months are counted from year 0 so they can be compared and subtracted.
 const toIndex = (value: string) => {
@@ -37,22 +31,29 @@ for (const year of timelineYears) {
   }
 }
 
-const formatMonth = (index: number) => `${MONTHS[index % 12]} ${Math.floor(index / 12)}`
-
-// "Feb – Oct 2026 · 9 mo", "Sep 2025 – Jan 2026 · 5 mo", "Nov 2026 – now", "Apr 2025", "2021"
-function describe(item: TimelineItem) {
+// English: "Feb – Oct 2026 · 9 mo", "Sep 2025 – Jan 2026 · 5 mo", "Nov 2026 – now", "Apr 2025", "2021".
+// The wording per language comes from the dictionary.
+function describe(item: TimelineItem, locale: Locale) {
+  const t = dictionary[locale].timeline
   if (!item.start.includes('-')) return { range: item.start, duration: '' }
   const start = toIndex(item.start)
-  if (!item.end) return { range: formatMonth(start), duration: '' }
+  const startYear = Math.floor(start / 12)
+  const startMonth = start % 12
+  if (!item.end) return { range: t.range({ startYear, startMonth, ongoing: false }), duration: '' }
   const ongoing = item.end === 'present'
   const end = ongoing ? nowIndex : toIndex(item.end)
-  const sameYear = Math.floor(start / 12) === Math.floor(end / 12)
-  const from = sameYear && !ongoing ? MONTHS[start % 12] : formatMonth(start)
   const months = end - start + 1
-  const years = Math.floor(months / 12)
-  const rest = months % 12
-  const duration = [years && `${years} yr`, rest && `${rest} mo`].filter(Boolean).join(' ')
-  return { range: `${from} – ${ongoing ? 'now' : formatMonth(end)}`, duration }
+  const duration = t.duration(Math.floor(months / 12), months % 12)
+  const range = ongoing
+    ? t.range({ startYear, startMonth, ongoing })
+    : t.range({
+        startYear,
+        startMonth,
+        endYear: Math.floor(end / 12),
+        endMonth: end % 12,
+        ongoing,
+      })
+  return { range, duration }
 }
 
 interface Placement {
@@ -65,7 +66,7 @@ interface Placement {
 
 // Place each lane's items on the month grid. Items that overlap in time sit side by side
 // in separate tracks; items with only a year are stacked together at the top of that year.
-function layoutLane(id: LaneId) {
+function layoutLane(timelineItems: TimelineItem[], id: LaneId) {
   const placements: Placement[] = []
   const yearOnly: Record<string, TimelineItem[]> = {}
   for (const item of timelineItems.filter((i) => i.lane === id)) {
@@ -113,9 +114,18 @@ function layoutLane(id: LaneId) {
   return { tracks, placements }
 }
 
-const laneLayouts = Object.fromEntries(
-  lanes.map((lane) => [lane.id, layoutLane(lane.id)])
-) as Record<LaneId, ReturnType<typeof layoutLane>>
+// Both languages share dates and order, so the layout is the same; it is built per language
+// only because the placed items carry the translated text.
+const buildLayouts = (locale: Locale) => {
+  const { lanes, timelineItems } = getTimeline(locale)
+  return Object.fromEntries(
+    lanes.map((lane) => [lane.id, layoutLane(timelineItems, lane.id)])
+  ) as Record<LaneId, ReturnType<typeof layoutLane>>
+}
+const layoutsByLocale: Record<Locale, ReturnType<typeof buildLayouts>> = {
+  en: buildLayouts('en'),
+  zh: buildLayouts('zh'),
+}
 
 const activeIn = (item: TimelineItem, year: number) => {
   const startYear = Number(item.start.slice(0, 4))
@@ -124,8 +134,8 @@ const activeIn = (item: TimelineItem, year: number) => {
   return startYear <= year && year <= endYear
 }
 
-function TimelineEntry({ item }: { item: TimelineItem }) {
-  const { range, duration } = describe(item)
+function TimelineEntry({ item, locale }: { item: TimelineItem; locale: Locale }) {
+  const { range, duration } = describe(item, locale)
   return (
     <details className="cvt-item">
       <summary>
@@ -140,7 +150,7 @@ function TimelineEntry({ item }: { item: TimelineItem }) {
         <div className="cvt-item-body">
           {item.note && <p className="cvt-item-note">{item.note}</p>}
           {item.detail && <p>{item.detail}</p>}
-          {item.href && <Link href={item.href}>Read more →</Link>}
+          {item.href && <Link href={item.href}>{dictionary[locale].timeline.readMore}</Link>}
         </div>
       )}
     </details>
@@ -148,6 +158,10 @@ function TimelineEntry({ item }: { item: TimelineItem }) {
 }
 
 export default function CVTimeline() {
+  const locale = useLocale()
+  const t = dictionary[locale].timeline
+  const { lanes, timelineItems, yearSummaries } = getTimeline(locale)
+  const laneLayouts = layoutsByLocale[locale]
   const [active, setActive] = useState<Set<LaneId>>(() => new Set(lanes.map((l) => l.id)))
   const [currentYear, setCurrentYear] = useState(timelineYears[0])
   const rowRefs = useRef<Record<number, HTMLElement | null>>({})
@@ -244,12 +258,10 @@ export default function CVTimeline() {
           <span className="cvt-now-year">{currentYear}</span>
           <span className="cvt-now-text">
             {yearSummaries[currentYear]}{' '}
-            <span className="cvt-now-count">
-              {currentCount} {currentCount === 1 ? 'item' : 'items'}
-            </span>
+            <span className="cvt-now-count">{t.items(currentCount)}</span>
           </span>
         </div>
-        <div className="cvt-years" role="group" aria-label="Jump to year">
+        <div className="cvt-years" role="group" aria-label={t.jumpToYear}>
           {timelineYears.map((year) => (
             <button
               key={year}
@@ -261,7 +273,7 @@ export default function CVTimeline() {
             </button>
           ))}
         </div>
-        <div className="cvt-filters" role="group" aria-label="Filter by category">
+        <div className="cvt-filters" role="group" aria-label={t.filter}>
           {lanes.map((lane) => (
             <button
               key={lane.id}
@@ -277,7 +289,7 @@ export default function CVTimeline() {
           ))}
           {active.size < lanes.length && (
             <button type="button" className="cvt-chip cvt-reset" onClick={showAll}>
-              Show all
+              {t.showAll}
             </button>
           )}
         </div>
@@ -320,7 +332,7 @@ export default function CVTimeline() {
                 }
                 style={{ gridRow: index + 1 }}
               >
-                {MONTHS[row.month]}
+                {t.month(row.month)}
               </span>
             )
           )}
@@ -343,7 +355,7 @@ export default function CVTimeline() {
                 }}
               >
                 {p.items.map((item) => (
-                  <TimelineEntry key={item.title + item.org} item={item} />
+                  <TimelineEntry key={item.title + item.org} item={item} locale={locale} />
                 ))}
               </div>
             ))

@@ -1,0 +1,53 @@
+// Traditional Chinese (Taiwan) counterpart of data/sportsData.ts. Same order as the English
+// lists, so photo entries can be matched by index if they are added later.
+import type { Sport } from '../sportsData'
+
+export const triedSports: Sport[] = [
+  { name: '跑步' },
+  { name: '鎖舞（Locking）' },
+  { name: '接觸即興' },
+  { name: '獨木舟' },
+  { name: '立式划槳' },
+  { name: '游泳' },
+  { name: '浮潛' },
+  { name: '抱石' },
+  { name: '冰攀' },
+  { name: '空中瑜伽' },
+  { name: '墊上瑜伽' },
+  { name: '皮拉提斯' },
+  { name: '火舞' },
+  { name: '鋼管舞' },
+  { name: '溜冰' },
+  { name: '重量訓練' },
+  { name: 'Gyrotonic' },
+  { name: '跆拳道' },
+  { name: '排球' },
+  { name: '羽球' },
+  { name: '壁球' },
+  { name: '撞球' },
+  { name: '桌球' },
+  { name: '高爾夫' },
+  { name: '攀樹' },
+  { name: '射箭' },
+  { name: '軟式網球' },
+  { name: '單車' },
+  { name: '飛盤' },
+  { name: '保齡球' },
+  { name: '飛鏢' },
+]
+
+export const nextSports: Sport[] = [
+  { name: '水肺潛水' },
+  { name: '空中吊環' },
+  { name: '冰壺' },
+  { name: '滑板' },
+  { name: '散打' },
+  { name: '划龍舟' },
+  { name: '舞龍舞獅' },
+  { name: '擊劍' },
+  { name: '空氣步槍射擊' },
+  { name: '滑雪' },
+  { name: '帆船' },
+  { name: '騎馬' },
+  { name: '衝浪' },
+]

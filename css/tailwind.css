@@ -674,7 +674,9 @@ body {
 .project-filter {
   margin: 0 0 2rem;
 }
-.project-entry {
+/* Cards animate only after the filter is used. On first load they are static: the first
+   card holds the page's largest image, and any entry animation delays that paint. */
+.project-list.is-filtered .project-entry {
   animation: project-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) backwards;
 }
 @keyframes project-in {
@@ -684,7 +686,7 @@ body {
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .project-entry {
+  .project-list.is-filtered .project-entry {
     animation: none;
   }
 }
@@ -897,7 +899,7 @@ body {
   font:
     0.65rem/1.5 ui-monospace,
     monospace;
-  color: var(--color-gray-500);
+  color: var(--color-gray-600);
 }
 .sidebar-pages a:not([aria-current='page']):not(:hover):not(:focus-visible) .sidebar-number {
   opacity: 0;
@@ -1262,20 +1264,6 @@ body {
     margin-top: 2.5rem;
   }
 }
-@media (prefers-reduced-motion: no-preference) {
-  .home-portrait-frame {
-    animation: home-fade 350ms ease-out;
-  }
-  @keyframes home-fade {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-}
-
 /* Retain a small photographic detail around the otherwise plain portrait. */
 .home-portrait-frame {
   position: relative;
@@ -1597,11 +1585,13 @@ body {
   max-width: 48rem;
   margin-top: 1.75rem;
 }
-.publication-item h3 {
+.publication-item .publication-title {
   margin: 0.35rem 0 0.4rem;
+  font-family: inherit;
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.6;
+  letter-spacing: normal;
   color: var(--color-gray-900);
 }
 .publication-type {
@@ -1635,7 +1625,7 @@ body {
 .publication-links .project-link {
   margin-top: 0.4rem;
 }
-.dark .publication-item h3,
+.dark .publication-item .publication-title,
 .dark .publication-authors strong {
   color: var(--color-gray-100);
 }
@@ -2245,9 +2235,8 @@ body {
   .home-profile .profile-links > :nth-child(4) { --n: 3; }
   .home-profile .profile-links > :nth-child(5) { --n: 4; }
   .home-profile .profile-links > :nth-child(6) { --n: 5; }
-  .home-portrait-frame .home-portrait {
-    animation: home-develop 1.1s 0.2s ease-out backwards;
-  }
+  /* The portrait is the page's largest paint, so it is not animated at all: any entry
+     animation on it (or on its frame) delays that paint. Only the corners move. */
   .home-portrait-frame::before {
     animation: home-focus-a 0.9s 0.25s cubic-bezier(0.22, 1, 0.36, 1) backwards;
   }
@@ -2449,7 +2438,7 @@ body {
 }
 .home-voice + .home-reading {
   margin-top: 1.75rem;
-  opacity: 0.75;
+  opacity: 0.9;
 }
 .home-voice + .home-reading:hover,
 .home-voice + .home-reading:focus-within {
@@ -2460,7 +2449,11 @@ body {
   font: 600 0.68rem/1.5 ui-monospace, monospace;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-gray-500);
+  color: var(--color-gray-600);
+}
+.dark .home-reading-label,
+.dark .sidebar-number {
+  color: var(--color-gray-400);
 }
 .home-reading button {
   padding: 0.15rem 0.65rem;
@@ -2698,7 +2691,8 @@ html[data-atmosphere] body {
 }
 .academic-prose ul.beyond-dots {
   display: grid;
-  grid-template-columns: repeat(11, minmax(0, 1fr));
+  /* 20px dot + 4px gap keeps every dot a 24px touch target at any card width */
+  grid-template-columns: repeat(auto-fill, minmax(20px, 1fr));
   gap: 4px;
   list-style: none;
   padding-left: 0;
@@ -2762,10 +2756,72 @@ html[data-atmosphere] body {
   .beyond-cards {
     grid-template-columns: 1fr;
   }
-  .academic-prose ul.beyond-dots {
-    grid-template-columns: repeat(22, minmax(0, 1fr));
-  }
   .beyond-frames {
     max-width: 16rem;
   }
+}
+
+/* Language switch: a quiet text pair beside the theme switch */
+.sidebar-tools {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+.language-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  font-size: 0.78rem;
+  line-height: 1;
+}
+.language-switch a {
+  padding: 0.3rem 0.4rem;
+  border-radius: 3px;
+  color: var(--color-gray-500);
+}
+.language-switch a:hover {
+  color: #93442f;
+}
+.language-switch a[aria-current='true'] {
+  color: var(--color-gray-900);
+  font-weight: 600;
+}
+.dark .language-switch a[aria-current='true'] {
+  color: var(--color-gray-100);
+}
+.dark .language-switch a:hover {
+  color: var(--color-primary-300);
+}
+
+/* Traditional Chinese: system CJK fonts, and no tracking or uppercase (both are Latin-only ideas) */
+:lang(zh-Hant-TW) body,
+:lang(zh-Hant-TW) {
+  --font-sans: var(--font-space-grotesk), 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei',
+    ui-sans-serif, system-ui, sans-serif;
+}
+:lang(zh-Hant-TW) body {
+  font-family: var(--font-sans);
+}
+:lang(zh-Hant-TW) h1,
+:lang(zh-Hant-TW) h2,
+:lang(zh-Hant-TW) h3,
+:lang(zh-Hant-TW) h4,
+:lang(zh-Hant-TW) blockquote,
+:lang(zh-Hant-TW) .academic-document :is(h1, h2, h3, h4) {
+  font-family: 'Georgia', 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', serif;
+  letter-spacing: 0;
+}
+:lang(zh-Hant-TW) .academic-document :is(p, li, dd) {
+  line-height: 1.9;
+}
+:lang(zh-Hant-TW) :is(.eyebrow, [class*='eyebrow'], .course-grade, .sidebar-number, .academic-wordmark) {
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+:lang(zh-Hant-TW) * {
+  text-transform: none;
+}
+:lang(zh-Hant-TW) .eyebrow,
+:lang(zh-Hant-TW) .sidebar-sections .eyebrow {
+  letter-spacing: 0.04em;
 }
